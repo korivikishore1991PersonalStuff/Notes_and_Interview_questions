@@ -273,7 +273,7 @@ number of executor-cores for each executor = 3 to 5 = e
 number of executors per machine(worker or slave node) ={(VC/n)-1}/e  
 number of threads trying to read and write from HDFS per machine = e*{((VC/n)-1)/e}  
 Total number of cores per spark Application = n*{((VC/n)-1)/e}*e  
-Total memory per spark Application = {(M*e)/(n*((VC/n)-1))}*0.9*{n*(((VC/n)-1)/e)}  
+Total memory per spark Application = {(M*(e))/(n*((VC/n)-1))}*0.9*{n*(((VC/n)-1)/e)}  
 #### Output:  
 --executor-cores = e  
 --num-executors = ({(VC/n)-1}/e)*n  
