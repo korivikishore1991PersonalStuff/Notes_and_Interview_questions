@@ -6,7 +6,7 @@ e.g. Group all customer order based on customer key, find the best sales year , 
 
 Unlike standard ETL tools sparks comes with three transformations to achieve the same result but in different ways.
 
-reduceByKey
-groupByKey
-combineByKey
+1) reduceByKey 
+2) groupByKey  
+3) combineByKey  
 These are three transformation available in spark which can be used interchangeably.
