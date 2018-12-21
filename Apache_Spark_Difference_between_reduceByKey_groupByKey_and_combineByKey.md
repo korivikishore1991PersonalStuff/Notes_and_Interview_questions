@@ -152,12 +152,46 @@ mergeCombiner is going to merge 103+42 combiners across partition
 mergeCombiner is going to merge 99+48 combiners across partition
 
 To summarize what each sub function inside combineByKey do
-
-createCombiner, which turns a value into a combiner (e.g., creates a one-element list)
-
-mergeValue, to merge a value into a accumulated values (e.g., adds it to the end of a list)
-
-mergeCombiners, combine two or more combiners into a single one.
+1) createCombiner, which turns a value into a combiner (e.g., creates a one-element list)
+2) mergeValue, to merge a value into a accumulated values (e.g., adds it to the end of a list)
+3) mergeCombiners, combine two or more combiners into a single one.
 
 
 If groupByKey is derived from combineByKey why is it different in the way shuffle operation is done. The answer is purpose of groupByKey is to get a list of values before actual aggregation to achieve this map side aggregation is disabled for groupByKey since adding to a list does not save any space.
+Check the final code. You can remove sparkcontext if the code is run from REPL
+```code
+def aggregateFunctions(): Unit = {
+    val c SparkContext("local[8]", "Learn Aggregate Functions")
+    val mydata = conf.textFile("src/main/resources/soccer.txt")
+    //Converting data to a tuple, by splitting at delimiter. Score converted to a number explicitly
+    val myPair = mydata.map { k => (k.split(" ")(0), k.split(" ")(1).toInt) }
+    // Now let us try groupByKey to get sum of the goals in last 4 years for players
+    myPair.groupByKey().foreach(println)
+    myPair.groupByKey().mapValues { x => x.reduce((a, b) => a + b) }.foreach(println)
+    println("Another method to do same thing.")
+    myPair.groupByKey().map { x => (x._1, x._2.sum) }.foreach(println)
+    println("reduceByKey")
+    myPair.reduceByKey { case (a, b) => a + b }.foreach { println }
+    println("combineByKey")
+    myPair.combineByKey(
+      (comb: Int) => {
+        println(s"""createCombiner is going to create first combiner for ${comb}""")
+        (comb)
+      }, (a: Int, comb: Int) => {
+        println(s"""mergeValue is going to merge ${a}+${comb} values in a single partition""")
+        (a + comb)
+      }, (a: Int, b: Int) => {
+        println(s"""mergeCombiner is going to merge ${a}+${b} combiners across partition""")
+        (a + b)
+      }).foreach(println)
+  }
+```
+WHY IS REDUCEBYKEY EFFICIENT THAT GROUPBYKEY?
+```Des
+i) reduceByKey works on pair as a per key function. That is rather than reducing entire RDD to a in-memory value, reduceByKey reduces the data per key and get back an RDD with reduced values corresponding to that key. This means the data getting moved over network or from one parition to another is minimal.
+ii) groupByKey output is key and iterate-able value list. So this list of values might have obtained from different partition in different nodes. This cause a lot of shuffle and data exchange over network.To determine which machine to shuffle a pair to, Spark calls a partitioning function on the key of the pair. Spark spills data to disk when there is more data shuffled onto a single executor machine than can fit in memory. However, it flushes out the data to disk one key at a time - so if a single key has more key-value pairs than can fit in memory, an out of memory exception occurs. When Spark needs to spill to disk, performance is severely impacted.
+iii) Often groupByKey function has to be accompanied with a reduce or fold to get the real result. Now this becomes a two step operation. First apply groupByKey and then reduce. Where as same logic can be achieved with a single reduceByKey call with the reduction function applied. As seen in our use case above.
+```
+groupBy is still useful when we need to apply certain functions to determine the key. i.e not just grouping by on key, we need to do some transformation to determine key. In our above example , assume we standardized names to upper case, a function say toUpper can be applied to transform the keys.
+
+Hope this helps. Feel free to add more use cases where the aggregate functions can applied differently.
