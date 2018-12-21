@@ -75,8 +75,8 @@ Same result can be achieved using
 ```code
 myPair.groupByKey().map { x => (x._1, x._2.sum) }.foreach(println)
 ```
-When a groupByKey is called on a RDD pair the data in the partitions are shuffled over the network to form a key and list of values. This is a costly operation particularly when working on large data set. This might also cause trouble when the combined value list is huge to occupy in one partition. In this case a disk spill will occur.
-```Figue_1```  
+When a groupByKey is called on a RDD pair the data in the partitions are shuffled over the network to form a key and list of values. This is a costly operation particularly when working on large data set. This might also cause trouble when the combined value list is huge to occupy in one partition. In this case a disk spill will occur.  
+```Figue_1```   
 reduceByKey is a better bet in this case.
 
 ```des
@@ -90,8 +90,8 @@ myPair.reduceByKey { case (a, b) => a + b }.foreach { println }
 ```Data
 (Messi,147)
 (Ronaldo,145)
-```
-```Figure_2```
+```  
+```Figure_2```  
 Unlike groupByKey , reduceByKey does not shuffle data at the beginning. As it knows the reduce operation can be applied in same partition first , only result of reduce function is shuffled over network. This cause significant reduction in traffic over network. Only catch is that the values for each key has to be of same datatype. If it is different datatypes it has to explicitly converted. This drawback can be addressed using combineByKey.
 ```des
 combineByKey is most general per-key aggregation function. In fact other aggregate functions described above are derived from combineByKey. This makes combineByKey little bit tricky to comprehend.
