@@ -77,7 +77,9 @@ myPair.groupByKey().map { x => (x._1, x._2.sum) }.foreach(println)
 ```
 When a groupByKey is called on a RDD pair the data in the partitions are shuffled over the network to form a key and list of values. This is a costly operation particularly when working on large data set. This might also cause trouble when the combined value list is huge to occupy in one partition. In this case a disk spill will occur. 
 
-```Figue_1```  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1L9WUb-6OKX7MSrdM-YSR8H78you5611Y" width="650"/>
+</p>    
 
 reduceByKey is a better bet in this case.
 
