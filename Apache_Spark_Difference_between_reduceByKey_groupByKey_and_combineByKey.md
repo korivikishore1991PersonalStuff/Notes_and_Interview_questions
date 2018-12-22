@@ -95,7 +95,9 @@ myPair.reduceByKey { case (a, b) => a + b }.foreach { println }
 (Messi,147)
 (Ronaldo,145)
 ```  
-```Figure_2```  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1s2omxhb9bC4U7RHjyrBZs5EdWVgyUaa6" width="650"/>
+</p>  
 
 Unlike groupByKey , reduceByKey does not shuffle data at the beginning. As it knows the reduce operation can be applied in same partition first , only result of reduce function is shuffled over network. This cause significant reduction in traffic over network. Only catch is that the values for each key has to be of same datatype. If it is different datatypes it has to explicitly converted. This drawback can be addressed using combineByKey.
 ```des
