@@ -9,9 +9,28 @@ Two lines above this line is empty.
 And this is the last line.
 [n906147@ua0edge101 ~]$
 [n906147@ua0edge101 ~]$
-[n906147@ua0edge101 ~]$ grep -o -P "(?<=is).*(?= line)" demo_file
- line is the 1st lower case
- is the last
+[n906147@ua0edge101 ~]$ grep "is.*line" demo_file
+this line is the 1st lower case line in this file.
+Two lines above this line is empty.
+And this is the last line.
+[n906147@ua0edge101 ~]$
+[n906147@ua0edge101 ~]$
+[n906147@ua0edge101 ~]$ grep -n "is.*line" demo_file
+2:this line is the 1st lower case line in this file.
+5:Two lines above this line is empty.
+6:And this is the last line.
+[n906147@ua0edge101 ~]$
+[n906147@ua0edge101 ~]$
+[n906147@ua0edge101 ~]$ grep -o "is.*line" demo_file
+is line is the 1st lower case line
+is line
+is is the last line
+[n906147@ua0edge101 ~]$
+[n906147@ua0edge101 ~]$
+[n906147@ua0edge101 ~]$ grep -n -o "is.*line" demo_file
+2:is line is the 1st lower case line
+5:is line
+6:is is the last line
 [n906147@ua0edge101 ~]$
 [n906147@ua0edge101 ~]$
 [n906147@ua0edge101 ~]$ grep -o -P "(?<=is).*(?=line)" demo_file
@@ -20,10 +39,9 @@ And this is the last line.
  is the last
 [n906147@ua0edge101 ~]$
 [n906147@ua0edge101 ~]$
-[n906147@ua0edge101 ~]$ grep -o "is.*line" demo_file
-is line is the 1st lower case line
-is line
-is is the last line
+[n906147@ua0edge101 ~]$ grep -o -P "(?<=is).*(?= line)" demo_file
+ line is the 1st lower case
+ is the last
 ```  
 
 ### Using SED and GREP for Horizontal filtering and awk for vertical filtering
