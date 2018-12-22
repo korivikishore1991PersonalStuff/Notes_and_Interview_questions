@@ -196,5 +196,3 @@ ii) groupByKey output is key and iterate-able value list. So this list of values
 iii) Often groupByKey function has to be accompanied with a reduce or fold to get the real result. Now this becomes a two step operation. First apply groupByKey and then reduce. Where as same logic can be achieved with a single reduceByKey call with the reduction function applied. As seen in our use case above.
 ```
 groupBy is still useful when we need to apply certain functions to determine the key. i.e not just grouping by on key, we need to do some transformation to determine key. In our above example , assume we standardized names to upper case, a function say toUpper can be applied to transform the keys.
-
-Hope this helps. Feel free to add more use cases where the aggregate functions can applied differently.
