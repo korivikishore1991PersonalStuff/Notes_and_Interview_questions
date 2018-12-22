@@ -25,3 +25,39 @@ is line is the 1st lower case line
 is line
 is is the last line
 ```  
+
+### Using SED and GREP for Horizontal filtering and awk for vertical filtering
+```bash
+korivi@Korivi16GB:~$ cat demo_file
++----------------+
+| count(d sysid) |
++----------------+
+| 1888238        |
++----------------+
+1 rows
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$ awk '{ print $2; }' demo_file
+
+count(d
+
+1888238
+
+rows
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$ sed -n '4,4p' demo_file
+| 1888238        |
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$ grep -v -e "rows" -e "count" -e "-" demo_file
+| 1888238        |
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$ sed -n '4,4p' demo_file |awk '{ print $2; }'
+1888238
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$
+korivi@Korivi16GB:~$ grep -v -e "rows" -e "count" -e "-" demo_file |awk '{ print $2; }'
+1888238
+```
