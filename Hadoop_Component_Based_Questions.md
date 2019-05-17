@@ -34,6 +34,7 @@ The ability to extract information from operational data in real time is critica
   <img src="https://drive.google.com/uc?export=view&id=1QEM1hWmYsZup-gEFg4fednWdg5G790pL" width="650"/>
   <img src="https://drive.google.com/uc?export=view&id=1-Q7tdCH_fWxvHN4a8g9f45-dIdtwetDa" width="650"/>
 </p>
+
     
 ### What are operational and analytical operations?  
 Operational Data  
