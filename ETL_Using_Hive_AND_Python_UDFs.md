@@ -213,15 +213,29 @@ beeline -u $beeline_connect --hivevar var="AS" -f /home/dir/Script/query.hql &> 
 ```  
   
 # Hive Joins  
-    
+when these two tables are joined it is important that the larger table comes last in the query. Or, you can also explicitly tell Hive which table it should stream.    
+```SQL
+SELECT /*+ STREAMTABLE(emp) */ emp.id,name,salary,dept_name FROM small_table JOIN large_table ON (dept.id = emp.id);
+```  
 ## Map-side joins  
 Map-side joins can be tricky to configure and use properly. Here are a few pointers.  
+Check the below parameters for joins in spark:  
+spark.sql.shuffle.partitions(which is by default 200)  
+spark.default.parallelism(works for raw RDD)  
+df.repartition(numOfPartitions)  
 ### Auto-convert to map-side join whenever possible  
 Set the property hive.auto.convert.join to true in your Hive config and Hive will automatically try to convert the join to a map-side join, as long as the table fits below a certain size threshold. You can configure the maximum size with the property hive.smalltable.filesize. This will tell Hive what file size (or below) constitutes a small table. It's written in bytes expressed as a long (for example, 25000000L = 25M).  
+```SQL
+hive> set hive.auto.convert.join=true;
+hive> set hive.auto.convert.join.noconditionaltask=true;
+```
 Also consider setting hive.hashtable.max.memory.usage, which tells the map task to terminate if it requires more than the configured memory percentage.  
 ### Map-join behavior 
-If you omit ```/*+ MAPJOIN() */``` and rely on auto-convert, it can be difficult to follow what Hive is doing to optimize the join. Following are some tips:
-ff TableFoo LEFT OUTER JOIN TableBar: Try to convert TableBar to a hash table  
-ff TableFoo RIGHT OUTER JOIN TABLE B: Try to convert TableFoo to a  hash table  
-ff TableFoo FULL OUTER JOIN TableBar: Framework cannot map join full outer joins  
+If you omit ```/*+ MAPJOIN() */``` and rely on auto-convert, it can be difficult to follow what Hive is doing to optimize the join. Following are some tips:  
+TableFoo LEFT OUTER JOIN TableBar: Try to convert TableBar to a hash table  
+TableFoo RIGHT OUTER JOIN TableBar: Try to convert TableFoo to a  hash table  
+TableFoo FULL OUTER JOIN TableBar: Framework cannot map join full outer joins  
     
+## Hive Bucket Join  
+Buckets add an additional structure to the way the data is organized across HDFS. Entries with identical values in the columns using bucketing are stored in the same file partitions. Tables bucketed based on columns that include the join key can make advantage of Hive Bucket Joins.  
+The trick of Bucket Join in Hive is that the join of bucketed files having the same join key can efficiently be implemented as map-side joins. As previously explained do map-side joins impose strict constrains on the way the data needs to be organized. It needs to be sorted and partitioned identically. This is what can be achieved with bucketed Hive tables.  
