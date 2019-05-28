@@ -795,4 +795,8 @@ Yes, Sqoop lauches only Mappers to import and Export Data.
   
 # Cassandra   
 ### Explain Cassandra Arcitecture and timeStamps methods in it?  
+  
+# programming CLI  
+## Scala Options class  
+## Python getopt function  
 
