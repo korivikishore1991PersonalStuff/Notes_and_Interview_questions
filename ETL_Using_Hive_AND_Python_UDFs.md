@@ -217,12 +217,13 @@ when these two tables are joined it is important that the larger table comes las
 ```SQL
 SELECT /*+ STREAMTABLE(emp) */ emp.id,name,salary,dept_name FROM small_table JOIN large_table ON (dept.id = emp.id);
 ```  
-## Map-side joins  
-Map-side joins can be tricky to configure and use properly. Here are a few pointers.  
 Check the below parameters for joins in spark:  
 spark.sql.shuffle.partitions(which is by default 200)  
 spark.default.parallelism(works for raw RDD)  
 df.repartition(numOfPartitions)  
+  
+## Map-side joins  
+Map-side joins can be tricky to configure and use properly. Here are a few pointers.  
 ### Auto-convert to map-side join whenever possible  
 Set the property hive.auto.convert.join to true in your Hive config and Hive will automatically try to convert the join to a map-side join, as long as the table fits below a certain size threshold. You can configure the maximum size with the property hive.smalltable.filesize. This will tell Hive what file size (or below) constitutes a small table. It's written in bytes expressed as a long (for example, 25000000L = 25M).  
 ```SQL
