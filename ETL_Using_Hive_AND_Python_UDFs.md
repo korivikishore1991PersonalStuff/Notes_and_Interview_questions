@@ -240,3 +240,40 @@ TableFoo FULL OUTER JOIN TableBar: Framework cannot map join full outer joins
 ## Hive Bucket Join  
 Buckets add an additional structure to the way the data is organized across HDFS. Entries with identical values in the columns using bucketing are stored in the same file partitions. Tables bucketed based on columns that include the join key can make advantage of Hive Bucket Joins.  
 The trick of Bucket Join in Hive is that the join of bucketed files having the same join key can efficiently be implemented as map-side joins. As previously explained do map-side joins impose strict constrains on the way the data needs to be organized. It needs to be sorted and partitioned identically. This is what can be achieved with bucketed Hive tables.  
+It is another Hive join optimization technique where all the tables need to be bucketed and sorted. In this case joins are very efficient because they require a simple merge of the presorted tables.  
+Let us create bucketed tables from our existing tables i.e.; emp and dept. Before creating bucketed table, you need to set below properties.  
+```SQL
+hive> set hive.enforce.bucketing=true;
+hive> set hive.enforce.sorting=true;
+
+create table buck_emp(
+    id int,
+    name string,
+    salary int)
+CLUSTERED BY (id)
+SORTED BY (id)
+INTO 4 BUCKETS;
+We need to use regular INSERT statement to insert into bucketed table.
+INSERT OVERWRITE TABLE buck_emp
+SELECT * FROM emp;
+```  
+Similarly, create another bucketed table from ‘dept’ table and inserting into it.  
+```SQL
+create table buck_dept(
+id int,
+dept_name string)
+CLUSTERED BY (id)
+SORTED BY (id)
+INTO 4 BUCKETS;
+ INSERT OVERWRITE TABLE buck_dept
+SELECT * FROM dept;
+```  
+Now the stage is set to perform SMB Map Join to optimize Hive joining. Again, make some changes in properties to perform SMB Map join.  
+```SQL
+hive>set hive.enforce.sortmergebucketmapjoin=false;
+hive>set hive.auto.convert.sortmerge.join=true;
+hive>set hive.optimize.bucketmapjoin = true;
+hive>set hive.optimize.bucketmapjoin.sortedmerge = true;
+hive>set hive.auto.convert.join=false;  // if we do not do this, automatically Map-Side Join will happen
+SELECT u.name,u.salary FROM buck_dept d  INNER JOIN buck_emp u ON d.id = u.id;
+```  
