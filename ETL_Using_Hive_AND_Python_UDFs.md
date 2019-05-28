@@ -211,3 +211,17 @@ beeline -u $beeline_connect -e "select t.x, count(t.x) as Row_Count from db.t wh
 #select t.x, count(t.x) as Row_Count from db.t where t.x="${var}" group by t.x;
 beeline -u $beeline_connect --hivevar var="AS" -f /home/dir/Script/query.hql &> query_file_retrival.log
 ```  
+  
+# Hive Joins  
+    
+## Map-side joins  
+Map-side joins can be tricky to configure and use properly. Here are a few pointers.  
+### Auto-convert to map-side join whenever possible  
+Set the property hive.auto.convert.join to true in your Hive config and Hive will automatically try to convert the join to a map-side join, as long as the table fits below a certain size threshold. You can configure the maximum size with the property hive.smalltable.filesize. This will tell Hive what file size (or below) constitutes a small table. It's written in bytes expressed as a long (for example, 25000000L = 25M).  
+Also consider setting hive.hashtable.max.memory.usage, which tells the map task to terminate if it requires more than the configured memory percentage.  
+### Map-join behavior 
+If you omit ```/*+ MAPJOIN() */``` and rely on auto-convert, it can be difficult to follow what Hive is doing to optimize the join. Following are some tips:
+ff TableFoo LEFT OUTER JOIN TableBar: Try to convert TableBar to a hash table  
+ff TableFoo RIGHT OUTER JOIN TABLE B: Try to convert TableFoo to a  hash table  
+ff TableFoo FULL OUTER JOIN TableBar: Framework cannot map join full outer joins  
+    
