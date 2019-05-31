@@ -322,3 +322,30 @@ make to set the "hive.in.test" in hive-site.xml to "true".
   <value>true</value>
  </property>
 ```    
+and optionally  
+```xml
+ <property>
+  <name>hive.support.concurrency</name>
+  <value>true</value>
+ </property>
+ <property>
+  <name>hive.enforce.bucketing</name>
+  <value>true</value>
+ </property>
+ <property>
+  <name>hive.exec.dynamic.partition.mode</name>
+  <value>nonstrict</value>
+ </property>
+ <property>
+  <name>hive.txn.manager</name>
+  <value>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</value>
+ </property>
+ <property>
+  <name>hive.compactor.initiator.on</name>
+  <value>true</value>
+ </property>
+ <property>
+  <name>hive.compactor.worker.threads</name>
+  <value>2</value>
+ </property>
+```
