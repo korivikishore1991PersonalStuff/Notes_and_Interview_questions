@@ -308,6 +308,16 @@ delete from test_delete where name = 'aaa33';
 --DELETE FROM transactional_table WHERE transactional_table.key IN (SELECT key FROM non_transactional_table);  
 --UPDATE test_delete SET id = 333 where name = "aaa33";
 
+--combining Update and Insert using Merge  
+--merge into customer_partitioned
+-- using all_updates on customer_partitioned.id = all_updates.id
+-- when matched then update set
+--   email=all_updates.email,
+--   state=all_updates.state
+-- when not matched then insert
+--   values(all_updates.id, all_updates.name, all_updates.email,
+--   all_updates.state, all_updates.signup);
+
 hive> select * from test_delete;
 OK
 32 aaa32
