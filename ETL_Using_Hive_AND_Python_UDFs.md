@@ -306,6 +306,7 @@ OK
 delete from test_delete where name = 'aaa33';
 --deleting keys in Transactional table via data from non transactional table  
 --DELETE FROM transactional_table WHERE transactional_table.key IN (SELECT key FROM non_transactional_table);  
+--UPDATE test_delete SET id = 333 where name = "aaa33";
 
 hive> select * from test_delete;
 OK
