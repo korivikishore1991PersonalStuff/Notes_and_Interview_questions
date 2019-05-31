@@ -277,3 +277,45 @@ hive>set hive.optimize.bucketmapjoin.sortedmerge = true;
 hive>set hive.auto.convert.join=false;  // if we do not do this, automatically Map-Side Join will happen
 SELECT u.name,u.salary FROM buck_dept d  INNER JOIN buck_emp u ON d.id = u.id;
 ```  
+  
+## ACID in Hive  
+```SQL
+set hive.support.concurrency=true;
+set hive.enforce.bucketing=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
+
+create table test_delete ( id int, name string )
+CLUSTERED BY (id) INTO 2 BUCKETS STORED AS ORC
+TBLPROPERTIES ("transactional"="true");
+
+INSERT INTO TABLE test_delete VALUES (31, 'aaa31');
+INSERT INTO TABLE test_delete VALUES (32, 'aaa32');
+INSERT INTO TABLE test_delete VALUES (33, 'aaa33');
+INSERT INTO TABLE test_delete VALUES (34, 'aaa34');
+INSERT INTO TABLE test_delete VALUES (35, 'aaa35');
+
+hive> select * from test_delete;
+OK
+31 aaa31
+32 aaa32
+33 aaa33
+34 aaa34
+35 aaa35
+
+delete from test_delete where name = 'aaa33';
+
+hive> select * from test_delete;
+OK
+32 aaa32
+34 aaa34
+31 aaa31
+35 aaa35
+```
+make to set the "hive.in.test" in hive-site.xml to "true".  
+```xml
+ <property>
+  <name>hive.in.test</name>
+  <value>true</value>
+ </property>
+```    
