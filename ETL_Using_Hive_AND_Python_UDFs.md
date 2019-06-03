@@ -203,6 +203,10 @@ hive>>SELECT TRANSFORM(fname, lname) USING 'python udf.py' AS (fname, l_name) FR
 var="AS"
 
 beeline -u $beeline_connect -e "select t.x, count(t.x) as Row_Count from db.t where t.x=\"${var}\" group by t.x;" &> Shell_retrival.log
+
+or
+beeline -u $beeline_connect --showHeader=false --outputformat=dsv --delimiterForDSV='\n' -e "use $database; show tables;" \
+        | xargs -P 10 -I {} bash -c 'impala-shell -k -i $impala_connection_string --ssl --ca_cert=$impala_cert_path -q "COMPUTE STATS $database.{}"'
 ```  
   
 ## Querying using --hivevar and sql file in Beeline  
