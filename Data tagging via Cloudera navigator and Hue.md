@@ -14,7 +14,8 @@
 # References  
   
 The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
-# Integrating Hue with Navigator <a name="Integrating Hue with Navigator"></a>  
+<a name="Integrating Hue with Navigator"></a>
+# Integrating Hue with Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
 Configure Hue in cloudera manager tp search on Tagging.  
 Figure#1  
