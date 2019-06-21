@@ -31,6 +31,22 @@ ALTER DATABASE financials SET DBPROPERTIES ('edited-by' = 'Joe Dba'); --Altering
  ```hql
 ALTER TABLE test_table SET TBLPROPERTIES ('comment' = 'Hello Ranga jeee'); --Altering comments
 ALTER TABLE table1 SET TBLPROPERTIES ('Key1' = 'Hello World!'); --Altering key:value properties
- ```
-  
+ ```  
+   
+# Cloumn creation and alteration  
+## Altering a cloumn  
+```hql
+ALTER TABLE $table_name CHANGE COLUMN $old_col_name $new_col_name INT COMMENT 'The hours, minutes, and seconds part of the timestamp' AFTER $col_name_before_present_col; --detailed way of changing the cloumn name and description
+ALTER TABLE test_change CHANGE a1 a1 INT COMMENT 'this is column a1';
+```  
+## Adding a cloumn  
+```hql
+ALTER TABLE log_messages ADD COLUMNS ( app_name   STRING COMMENT 'Application name', session_id LONG   COMMENT 'The current session id');
+```  
+## Removing a cloumn  
+```hql
+ALTER TABLE log_messages REPLACE COLUMNS ( hours_mins_secs INT    COMMENT 'hour, minute, seconds from timestamp', severity        STRING COMMENT 'The message severity' message STRING COMMENT 'The rest of the message');
+```  
+# Navigator based searching  
+# Hue based searching  
 # References  
