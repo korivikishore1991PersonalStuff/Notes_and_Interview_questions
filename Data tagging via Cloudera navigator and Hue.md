@@ -1,5 +1,8 @@
+The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
 # Integrating Hue with Navigator  
-can be used for Data Search and Tagging via Hue.  Aplicable for Cloudera Enterprise 5.11 and greater.   
+Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
+ 
+
 # DataBase and Table creation  
 ## Creation of New DataBase with technical metadata  
 ```hql
@@ -50,3 +53,6 @@ ALTER TABLE log_messages REPLACE COLUMNS ( hours_mins_secs INT    COMMENT 'hour,
 # Navigator based searching  
 # Hue based searching  
 # References  
+https://learning.oreilly.com/library/view/programming-hive/9781449326944/ch04.html  
+https://blog.cloudera.com/blog/2017/05/new-in-cloudera-enterprise-5-11-hue-data-search-and-tagging/  
+
