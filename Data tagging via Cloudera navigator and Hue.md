@@ -21,12 +21,16 @@ STORED AS TEXTFILE
 TBLPROPERTIES ('Key0'='Hello', 'create_at'='2017-02-09 12:00');
 ```
   
-# DataBase and Table Alterration  
+# DataBase and Table Alteration  
 ## Alteration of Databases  
 ```hql
-ALTER database table1 SET DBPROPERTIES ('comment' = 'your comments');
-ALTER DATABASE financials SET DBPROPERTIES ('edited-by' = 'Joe Dba');
+ALTER database table1 SET DBPROPERTIES ('comment' = 'your comments'); --Altering comments
+ALTER DATABASE financials SET DBPROPERTIES ('edited-by' = 'Joe Dba'); --Altering key:value properties
 ```  
-  
+ ## Alteration of tables
+ ```hql
+ALTER TABLE test_table SET TBLPROPERTIES ('comment' = 'Hello Ranga jeee'); --Altering comments
+ALTER TABLE table1 SET TBLPROPERTIES ('Key1' = 'Hello World!'); --Altering key:value properties
+ ```
   
 # References  
