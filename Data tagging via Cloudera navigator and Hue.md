@@ -1,7 +1,5 @@
-[Custom foo description](#foo)
-<div…/>
+[Custom foo description](#foo)  
 
-# Foo
 # Integrating Hue with Navigator
 # DataBase and Table creation  
 ## Creation of New DataBase with technical metadata  
@@ -27,6 +25,7 @@ Figure#2
 user tags can also be edited via Hue.  
 Figure#3  
   
+# Foo
 # DataBase and Table creation  
 ## Creation of New DataBase with technical metadata  
 ```hql
