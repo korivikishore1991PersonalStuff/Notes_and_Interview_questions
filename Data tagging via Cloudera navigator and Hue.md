@@ -1,3 +1,7 @@
+[Custom foo description](#foo)
+<div…/>
+
+# Foo
 # Integrating Hue with Navigator
 # DataBase and Table creation  
 ## Creation of New DataBase with technical metadata  
