@@ -13,7 +13,13 @@
 # Navigator based searching  
 # Hue based searching  
 # References  
-  
+
+# Heading levels
+
+> This is a fixture to test heading levels
+
+<!-- toc -->
+
 The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
 ## Integrating Hue with Navigator <a name="Integrating Hue with Navigator"></a>  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
