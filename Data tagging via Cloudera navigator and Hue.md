@@ -1,20 +1,20 @@
 [Integrating_Hue_with_Navigator](#Integrating_Hue_with_Navigator)  
 [DataBase_and_Table_creation](#DataBase_and_Table_creation)    
-[Creation_of_New_DataBase_with_technical_metadata](#Creation_of_New_DataBase_with_technical_metadata)    
-[Creation_of_New_Table_with_technical_metadata](#Creation_of_New_Table_with_technical_metadata)    
+  [Creation_of_New_DataBase_with_technical_metadata](#Creation_of_New_DataBase_with_technical_metadata)    
+  [Creation_of_New_Table_with_technical_metadata](#Creation_of_New_Table_with_technical_metadata)    
 [DataBase_and_Table_Alteration](#DataBase_and_Table_Alteration)    
-[Alteration_of_Databases](#Alteration_of_Databases)    
-[Alteration_of_tables](#Alteration_of_tables)    
+  [Alteration_of_Databases](#Alteration_of_Databases)    
+  [Alteration_of_tables](#Alteration_of_tables)    
 [Cloumn_creation_and_alteration](#Cloumn_creation_and_alteration)    
-[Altering_a_cloumn](#Altering_a_cloumn)    
-[Adding_a_cloumn](#Adding_a_cloumn)    
-[Removing_a_cloumn](#Removing_a_cloumn)    
+  [Altering_a_cloumn](#Altering_a_cloumn)    
+  [Adding_a_cloumn](#Adding_a_cloumn)    
+  [Removing_a_cloumn](#Removing_a_cloumn)    
 [Navigator_based_searching](#Navigator_based_searching)    
 [Hue_based_searching](#Hue_based_searching)    
 [References](#References)    
   
 The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
-## Integrating_Hue_with_Navigator  
+# Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
 Configure Hue in cloudera manager tp search on Tagging.  
 Figure#1  
