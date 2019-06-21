@@ -1,3 +1,18 @@
+# Integrating Hue with Navigator  
+# DataBase and Table creation  
+## Creation of New DataBase with technical metadata  
+## Creation of New Table with technical metadata  
+# DataBase and Table Alteration  
+## Alteration of Databases  
+## Alteration of tables  
+# Cloumn creation and alteration  
+## Altering a cloumn   
+## Adding a cloumn  
+## Removing a cloumn  
+# Navigator based searching  
+# Hue based searching  
+# References  
+  
 The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
 # Integrating Hue with Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
