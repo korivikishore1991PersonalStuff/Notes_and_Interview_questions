@@ -1,4 +1,4 @@
-[Integrating_Hue_with_Navigator](#Integrating_Hue_with_Navigator)
+[Integrating_Hue_with_Navigator](#Integrating_Hue_with_Navigator)  
 [DataBase_and_Table_creation](#DataBase_and_Table_creation)    
 [Creation_of_New_DataBase_with_technical_metadata](#Creation_of_New_DataBase_with_technical_metadata)    
 [Creation_of_New_Table_with_technical_metadata](#Creation_of_New_Table_with_technical_metadata)    
