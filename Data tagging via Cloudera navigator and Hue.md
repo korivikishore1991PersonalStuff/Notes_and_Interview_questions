@@ -1,4 +1,4 @@
-# Integrating Hue with Navigator  
+- [Integrating Hue with Navigator](#Integrating Hue with Navigator)
 # DataBase and Table creation  
 ## Creation of New DataBase with technical metadata  
 ## Creation of New Table with technical metadata  
