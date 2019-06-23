@@ -132,6 +132,6 @@ https://learning.oreilly.com/library/view/programming-hive/9781449326944/ch04.ht
 https://blog.cloudera.com/blog/2017/05/new-in-cloudera-enterprise-5-11-hue-data-search-and-tagging/  
 https://www.cloudera.com/documentation/enterprise/5-13-x/PDF/cloudera-datamgmt.pdf  
   
-# Items needed to be covered  
+# Items_needed_to_be_covered  
 tagging at database, table and cloumn level via Hive.  
 key:value pairs at cloumn level via Hive.  
