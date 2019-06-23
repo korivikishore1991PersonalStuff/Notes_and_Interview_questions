@@ -76,7 +76,7 @@ ALTER TABLE log_messages REPLACE COLUMNS ( hours_mins_secs INT    COMMENT 'hour,
 ```  
   
 # Navigator_based_searching  
-Navigator is available on Port 7187 via navigator metadata server, the navigator can be used to 
+Navigator is available on Port 7187 via navigator metadata server, the navigator can be used to audit, track and visulize data flow on the meta data using filtering via solar and linege diagram.  
 ## Searching_in_navigator  
 In Cloudera Navigator, metadata search is implemented by an embedded Solr engine that supports the syntax given by LuceneQParserPlugin. Navigator provides searching capabilities by components, storage, type(table, feilds), tags and size etc..  
 Example:  
@@ -87,7 +87,7 @@ boolean type searching ```lucene +((+*ers_stage_tls* +type:table)) +(-deleted:tr
 ## Defineing_and_searching_Managed_Metadata  
 Navigator provides capabilities to adding and Editing Metadata(tags, cloumns, description at all column, tables and database level) Using the Navigator UI.  
 Example:  
-
+Tags and description can be searched at main filtering level. key:value can be searched using "User defined values".  
 Figure#4  
 1. Run a search in the Navigator UI.  
 2. Click an entity link returned in the search. The Details tab displays.  
@@ -111,13 +111,16 @@ technical metadata in hive can be specified using table propetrties.
 ALTER TABLE table_name SET TBLPROPERTIES ('key1'='value1');
 ```    
 to search for this property, we must specify ```hql tp_key1:value1```  
+This technical metadata is extended attributes, which are added by Hive clients.  
+ 
+A sample after clear definition of techinical and managed metadata is given below, the below Hive table has custom metadata consisting of tags tag1 and tag2, a custom key-value pair customkey-value, and an extended Hive attribute key-value pair key1-value1. The Details page also displays the table schema.  
+Figure#5  
   
 # Hue_based_searching  
-Figure#  
+As stated earlier once hue is integrated we can edit, define and modified the technical metadata of Hive entities.
+Figure#6  
   
 # References  
 https://learning.oreilly.com/library/view/programming-hive/9781449326944/ch04.html  
 https://blog.cloudera.com/blog/2017/05/new-in-cloudera-enterprise-5-11-hue-data-search-and-tagging/  
 https://www.cloudera.com/documentation/enterprise/5-13-x/PDF/cloudera-datamgmt.pdf  
-  
-#  
