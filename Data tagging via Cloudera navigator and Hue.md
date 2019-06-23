@@ -21,17 +21,21 @@
 The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
-Configure Hue in cloudera manager tp search on Tagging.  
+Configure Hue in cloudera manager tp search on Tagging. 
+  
 Figure#1  
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1CltIc8lCXWGVB5CZDwxyfJ8Cz5Nkslfy" width="650"/>
 </p>  
 Refresh the SQL editor to get a new search bar in the Hue. Which enables users to search on tags, tables, columns etc..  
+  
 Figure#2  
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1o96ZpdRTHtb4PJ-zaFGkvVDsEG-yV8XF" width="650"/>
 </p>  
-user tags can also be edited via Hue.  
+  
+user tags can also be edited via Hue. 
+  
 Figure#3  
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1qaUgAn-CNwOmmEeiZ6wJEVJBpLOTtY_k" width="650"/>
@@ -98,10 +102,12 @@ boolean type searching ```lucene +((+*ers_stage_tls* +type:table)) +(-deleted:tr
 Navigator provides capabilities to adding and Editing Metadata(tags, cloumns, description at all column, tables and database level) Using the Navigator UI.  
 Example:  
 Tags and description can be searched at main filtering level. key:value can be searched using "User defined values".  
-Figure#4  
+  
+Figure#4    
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1jde3nPiJbbA4z3P_BaWZ9_EN6HFYyNaq" width="650"/>
 </p>  
+  
 1. Run a search in the Navigator UI.  
 2. Click an entity link returned in the search. The Details tab displays.  
 3. To the left of the Details tab, click Actions > Edit Metadata.... The Edit Metadata dialog box drops down.  
@@ -127,6 +133,7 @@ to search for this property, we must specify ```hql tp_key1:value1```
 This technical metadata is extended attributes, which are added by Hive clients.  
  
 A sample after clear definition of techinical and managed metadata is given below, the below Hive table has custom metadata consisting of tags tag1 and tag2, a custom key-value pair customkey-value, and an extended Hive attribute key-value pair key1-value1. The Details page also displays the table schema.  
+  
 Figure#5  
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1g0lp2dCJKBbe0I4Y2L3BYMY3iV_tFYoE" width="650"/>
@@ -139,11 +146,14 @@ Example of searches:
 table:customer → Find the customer table  
 table:tax* tags:finance → List all the tables starting with tax and tagged with ‘finance’  
 owner:admin type:field usage → List all the fields created by the admin user that matches the usage string  
+  
 Figure#6  
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1isUizOaP-nJfrErjhmjza0cFE37B14J9" width="650"/>
 </p>  
+  
 Adding tags in Hue.  
+  
 Figure#7  
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1O0US1aKBllKNuiTi7nAjHbzodrRZKprh" width="650"/>
