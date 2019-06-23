@@ -36,6 +36,17 @@ INSERT INTO TABLE pageviews PARTITION (datestamp)
 select * from pageviews where came_from is NULL; 
 ```   
   
+## To display using column name  
+```SQL
+hive> set hive.cli.print.header=true;
+hive> select * from table_name;
+```  
+  
+## Deleting all tables in a database:  
+```SQL
+hive -e 'use sample_db;show tables' | xargs -I '{}' hive -e 'use sample_db;drop table {}'
+```
+  
 # External Staging table creation:  
   
 ## Input Preparations:  
