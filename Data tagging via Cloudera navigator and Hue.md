@@ -10,7 +10,8 @@
   * [Altering_a_cloumn](#Altering_a_cloumn)    
   * [Adding_a_cloumn](#Adding_a_cloumn)    
   * [Removing_a_cloumn](#Removing_a_cloumn)    
-- [Navigator_based_searching](#Navigator_based_searching)    
+- [Navigator_based_searching](#Navigator_based_searching)  
+   * [Searching_in_navigator](#Searching_in_navigator)
    * [Defineing_and_searching_Managed_Metadata](#Defineing_and_searching_Managed_Metadata)  
    * [Defining_and_searching_Technical_Metadata](#Defining_and_searching_Technical_Metadata)
 - [Hue_based_searching](#Hue_based_searching)    
@@ -99,12 +100,16 @@ Figure#4
     * Click the  and select a property.  
     * Click the value field after the : to display type-specific selection controls such as integer spinners and date selection controls. Either type the value or use the controls to select a value.  
     Click + to add another managed property key-value pair or another value for a given key.  
+   * Key-Value Pairs  
+     * Click + to add a key-value pair.
+     * Type a key and a value. You can specify special characters (for example, ".", " ") in the name, but it makes searching for the entity more difficult because some characters collide with special characters in the search syntax.    
+5. Click Save. The new metadata appears in the Managed Metadata or Custom Metadata pane.        
    
 ## Defining_and_searching_Technical_Metadata  
 technical metadata in hive can be specified using table propetrties.  
 ```hql
 ALTER TABLE table_name SET TBLPROPERTIES ('key1'='value1');
-```  
+```    
 to search for this property, we must specify ```hql tp_key1:value1```  
   
 # Hue_based_searching  
@@ -114,4 +119,5 @@ Figure#
 https://learning.oreilly.com/library/view/programming-hive/9781449326944/ch04.html  
 https://blog.cloudera.com/blog/2017/05/new-in-cloudera-enterprise-5-11-hue-data-search-and-tagging/  
 https://www.cloudera.com/documentation/enterprise/5-13-x/PDF/cloudera-datamgmt.pdf  
-
+  
+#  
