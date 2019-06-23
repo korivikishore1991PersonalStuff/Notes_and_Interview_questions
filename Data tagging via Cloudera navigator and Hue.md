@@ -124,6 +124,8 @@ table:customer → Find the customer table
 table:tax* tags:finance → List all the tables starting with tax and tagged with ‘finance’  
 owner:admin type:field usage → List all the fields created by the admin user that matches the usage string  
 Figure#6  
+Adding tags in Hue.  
+Figure#7  
   
 # References  
 https://learning.oreilly.com/library/view/programming-hive/9781449326944/ch04.html  
