@@ -16,6 +16,7 @@
    * [Defining_and_searching_Technical_Metadata](#Defining_and_searching_Technical_Metadata)
 - [Hue_based_searching](#Hue_based_searching)    
 - [References](#References)    
+- [Items_needed_to_be_covered](#Items_needed_to_be_covered)
   
 The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
 # Integrating_Hue_with_Navigator  
