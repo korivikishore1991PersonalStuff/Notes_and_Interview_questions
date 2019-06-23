@@ -11,6 +11,8 @@
   * [Adding_a_cloumn](#Adding_a_cloumn)    
   * [Removing_a_cloumn](#Removing_a_cloumn)    
 - [Navigator_based_searching](#Navigator_based_searching)    
+   * [Defineing_and_searching_Managed_Metadata](#Defineing_and_searching_Managed_Metadata)  
+   * [Defining_and_searching_Technical_Metadata](#Defining_and_searching_Technical_Metadata)
 - [Hue_based_searching](#Hue_based_searching)    
 - [References](#References)    
   
@@ -72,9 +74,26 @@ ALTER TABLE log_messages ADD COLUMNS ( app_name   STRING COMMENT 'Application na
 ALTER TABLE log_messages REPLACE COLUMNS ( hours_mins_secs INT    COMMENT 'hour, minute, seconds from timestamp', severity        STRING COMMENT 'The message severity' message STRING COMMENT 'The rest of the message');
 ```  
   
-# Navigator_based_searching
-# Hue_based_searching
+# Navigator_based_searching  
+In Cloudera Navigator, metadata search is implemented by an embedded Solr engine that supports the syntax given by LuceneQParserPlugin. Navigator provides searching capabilities by components, storage, type(table, feilds), tags and size etc..  
+Example:  
+  
+Navigator provides capabilities to adding and Editing Metadata(tags, cloumns, description at all column, tables and database level) Using the Navigator UI(on Port 7187 via navigator metadata server).  
+Example:  
+
+## Defineing_and_searching_Managed_Metadata  
+## Defining_and_searching_Technical_Metadata  
+technical metadata in hive can be specified using table propetrties.  
+```hql
+ALTER TABLE table_name SET TBLPROPERTIES ('key1'='value1');
+```  
+to search for this property, we must specify ```hql tp_key1:value1```  
+  
+# Hue_based_searching  
+Figure#4  
+  
 # References  
 https://learning.oreilly.com/library/view/programming-hive/9781449326944/ch04.html  
 https://blog.cloudera.com/blog/2017/05/new-in-cloudera-enterprise-5-11-hue-data-search-and-tagging/  
+https://www.cloudera.com/documentation/enterprise/5-13-x/PDF/cloudera-datamgmt.pdf  
 
