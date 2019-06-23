@@ -117,7 +117,12 @@ A sample after clear definition of techinical and managed metadata is given belo
 Figure#5  
   
 # Hue_based_searching  
-As stated earlier once hue is integrated we can edit, define and modified the technical metadata of Hive entities.
+As stated earlier once hue is integrated we can edit, define and modified the technical metadata of Hive entities.  
+By default, only tables and views are returned. To search for columns, partitions, databases use the ‘type:’ filter.  
+Example of searches:  
+table:customer → Find the customer table  
+table:tax* tags:finance → List all the tables starting with tax and tagged with ‘finance’  
+owner:admin type:field usage → List all the fields created by the admin user that matches the usage string  
 Figure#6  
   
 # References  
