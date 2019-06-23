@@ -75,13 +75,31 @@ ALTER TABLE log_messages REPLACE COLUMNS ( hours_mins_secs INT    COMMENT 'hour,
 ```  
   
 # Navigator_based_searching  
+Navigator is available on Port 7187 via navigator metadata server, the navigator can be used to 
+## Searching_in_navigator  
 In Cloudera Navigator, metadata search is implemented by an embedded Solr engine that supports the syntax given by LuceneQParserPlugin. Navigator provides searching capabilities by components, storage, type(table, feilds), tags and size etc..  
 Example:  
+Union type searching ```lucene  (*ers_stage_tls*) +(sourceType:hdfs sourceType:hive) +(type:table)```, to search for source types of HDFS and Hive or for table type or with string ```ers_stage_tls``` in the path.  
+Intersection type searching ```lucene +((+*ers_stage_tls* +type:table))```, to search for table type with string ```ers_stage_tls``` in the path.  
+boolean type searching ```lucene +((+*ers_stage_tls* +type:table)) +(-deleted:true)```, to search for table type with string ```ers_stage_tls``` in the path, which are not deleted.  
   
-Navigator provides capabilities to adding and Editing Metadata(tags, cloumns, description at all column, tables and database level) Using the Navigator UI(on Port 7187 via navigator metadata server).  
+## Defineing_and_searching_Managed_Metadata  
+Navigator provides capabilities to adding and Editing Metadata(tags, cloumns, description at all column, tables and database level) Using the Navigator UI.  
 Example:  
 
-## Defineing_and_searching_Managed_Metadata  
+Figure#4  
+1. Run a search in the Navigator UI.  
+2. Click an entity link returned in the search. The Details tab displays.  
+3. To the left of the Details tab, click Actions > Edit Metadata.... The Edit Metadata dialog box drops down.  
+4. Add metadata fields:  
+  * In the Name field, type a new display name.  
+  * In the Description field, type a description.  
+  * In the Tags field, type a tag and press Enter or Tab to create new tag entries.  
+  * Managed Metadata  
+    * Click the  and select a property.  
+    * Click the value field after the : to display type-specific selection controls such as integer spinners and date selection controls. Either type the value or use the controls to select a value.  
+    Click + to add another managed property key-value pair or another value for a given key.  
+   
 ## Defining_and_searching_Technical_Metadata  
 technical metadata in hive can be specified using table propetrties.  
 ```hql
@@ -90,7 +108,7 @@ ALTER TABLE table_name SET TBLPROPERTIES ('key1'='value1');
 to search for this property, we must specify ```hql tp_key1:value1```  
   
 # Hue_based_searching  
-Figure#4  
+Figure#  
   
 # References  
 https://learning.oreilly.com/library/view/programming-hive/9781449326944/ch04.html  
