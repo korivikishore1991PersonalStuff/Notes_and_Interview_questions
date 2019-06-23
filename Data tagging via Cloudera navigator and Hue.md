@@ -91,7 +91,7 @@ Figure#4
 1. Run a search in the Navigator UI.  
 2. Click an entity link returned in the search. The Details tab displays.  
 3. To the left of the Details tab, click Actions > Edit Metadata.... The Edit Metadata dialog box drops down.  
-4. Add metadata fields:  
+4. Add metadata fields:
   * In the Name field, type a new display name.  
   * In the Description field, type a description.  
   * In the Tags field, type a tag and press Enter or Tab to create new tag entries.  
