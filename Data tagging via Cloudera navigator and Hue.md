@@ -22,7 +22,9 @@ The aim of this data tagging is ease the time required to bowse, gather and cate
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
 Configure Hue in cloudera manager tp search on Tagging.  
-Figure#1  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1CltIc8lCXWGVB5CZDwxyfJ8Cz5Nkslfy" width="650"/>
+</p>  
 Refresh the SQL editor to get a new search bar in the Hue. Which enables users to search on tags, tables, columns etc..  
 Figure#2  
 user tags can also be edited via Hue.  
