@@ -1,4 +1,6 @@
 # Table of contents  
+- [Introduction](#Introduction)
+- [Expolring_Auditing_Component_API](#Expolring_Auditing_Component_API)
 - [Integrating_Hue_with_Navigator](#Integrating_Hue_with_Navigator)  
 - [DataBase_and_Table_creation](#DataBase_and_Table_creation)    
   * [Creation_of_New_DataBase_with_technical_metadata](#Creation_of_New_DataBase_with_technical_metadata)    
@@ -18,6 +20,7 @@
 - [References](#References)    
 - [Items_needed_to_be_covered](#Items_needed_to_be_covered)
   
+# Introduction
 The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. Navigator provides a singel front end view for managing, adding meta data, governing access, visualize data lineage and auditing data. Navigator automatically tracks lineage of cluster entities such as:  
 - HDFS files and directories  
 - Hive tables and columns  
@@ -32,12 +35,18 @@ Navigator is made up of two components:
 - Auditing Component(available @ port 7186)  
 - Metadata Component(available @ port 7187)  
   
-Figure#8  
+Figure#8 (for Auditing architecture) 
   
 HDFS operations captured for audit purposes are operations that access or modify the data or metadata of a file or a directory, operations denied due to lack of privileges.  
 Hive Operations captured for audit purpose will be any operations sent by HiveServer2, except for those captured by Sentry auditing like GRANT, REVOKE and ACCESS TO METADATA ONLY. naigator will also log operations denied due to lack of privileges. **USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**. Action taken against hive via the Hive CLI(HiveServer1) are not audited.  
 All Hue operations are captured for audit purpose, except for those captured by Sentry auditing.  
 Impala operations were captured for audit purpose and queries denied due to lack of privileges.  
+  
+# Expolring_Auditing_Component_API  
+audit data can be accessed through the web interface or via the REST API.  
+As an example of the REST API, issue this curl CMD to obtain all audit events where the 'Command' field is equal to 'GlobalHostInstall' ```solar curl -u admin:admin 'http://cmhost:7180/api/v6/audits?query=command==GlobalHostInstall' ```  
+As example of Audit via port 7187 on Navigator Server.  
+Figure#9a and Figure#9b (Audit checking via Navigator)  
   
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
