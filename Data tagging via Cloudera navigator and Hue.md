@@ -47,7 +47,7 @@ Impala operations were captured for audit purpose and queries denied due to lack
   
 # Expolring_Auditing_Component_API  
 audit data can be accessed through the web interface or via the REST API.  
-As an example of the REST API, issue this curl CMD to obtain all audit events where the 'Command' field is equal to 'GlobalHostInstall' ```solar 
+As an example of the REST API, issue this curl CMD to obtain all audit events where the 'Command' field is equal to 'GlobalHostInstall' ``` 
 curl -u admin:admin 'http://cmhost:7180/api/v6/audits?query=command==GlobalHostInstall' 
 ```  
 As example of Audit via port 7187 on Navigator Server.  
