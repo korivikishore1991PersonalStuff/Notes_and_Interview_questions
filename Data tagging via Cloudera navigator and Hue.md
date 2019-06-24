@@ -22,16 +22,22 @@ The aim of this data tagging is ease the time required to bowse, gather and cate
 - HDFS files and directories  
 - Hive tables and columns  
 - Mapreduce and YARN jobs  
-- Hive queries  
+- Hive queries**USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**  
 - Pig scripts  
 - Oozie workflows  
 - Spark jobs  
 - Sqoop jobs  
   
 Navigator is made up of two components:  
-- Auditing Component  
-- Metadata Component  
-
+- Auditing Component(available @ port 7186)  
+- Metadata Component(available @ port 7187)  
+  
+Figure#8  
+  
+HDFS operations captured for audit purposes are operations that access or modify the data or metadata of a file or a directory, operations denied due to lack of privileges.  
+Hive Operations captured for audit purpose will be any operations sent by HiveServer2, except for those captured by Sentry auditing like GRANT, REVOKE and ACCESS TO METADATA ONLY. naigator will also log operations denied due to lack of privileges. **USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**. Action taken against hive via the Hive CLI(HiveServer1) are not audited.  
+All Hue operations are captured for audit purpose, except for those captured by Sentry auditing.  
+Impala operations were captured for audit purpose and queries denied due to lack of privileges.  
   
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
