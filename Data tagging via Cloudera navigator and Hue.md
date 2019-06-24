@@ -22,7 +22,7 @@ The aim of this data tagging is ease the time required to bowse, gather and cate
 - HDFS files and directories  
 - Hive tables and columns  
 - Mapreduce and YARN jobs  
-- Hive queries**USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**  
+- Hive queries (**USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**)  
 - Pig scripts  
 - Oozie workflows  
 - Spark jobs  
