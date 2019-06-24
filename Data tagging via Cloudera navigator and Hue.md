@@ -18,7 +18,20 @@
 - [References](#References)    
 - [Items_needed_to_be_covered](#Items_needed_to_be_covered)
   
-The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. 
+The aim of this data tagging is ease the time required to bowse, gather and categorise related cloumns, tables and databases via predefined attributes like tags, key:value pairs and comments/description. Navigator provides a singel front end view for managing, adding meta data, governing access, visualize data lineage and auditing data. Navigator automatically tracks lineage of cluster entities such as:  
+- HDFS files and directories  
+- Hive tables and columns  
+- Mapreduce and YARN jobs  
+- Hive queries  
+- Pig scripts  
+- Oozie workflows  
+- Spark jobs  
+- Sqoop jobs  
+Navigator is made up of two components:  
+- Auditing Component  
+- Metadata Component  
+
+  
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
 Configure Hue in cloudera manager tp search on Tagging. 
