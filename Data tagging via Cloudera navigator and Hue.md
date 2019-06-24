@@ -50,7 +50,13 @@ audit data can be accessed through the web interface or via the REST API.
 As an example of the REST API, issue this curl CMD to obtain all audit events where the 'Command' field is equal to 'GlobalHostInstall' ```solar curl -u admin:admin 'http://cmhost:7180/api/v6/audits?query=command==GlobalHostInstall' ```  
 As example of Audit via port 7187 on Navigator Server.  
 Figure#9a and Figure#9b (Audit checking via Navigator)  
-  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=14ALCT-Axm9EeScb_55bnIwhL8Y0awOKK" width="650"/>
+</p>  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1K9x6Mzmatn-3q7AnaSVFA9jifATW1QHx" width="650"/>
+</p>  
+    
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
 Configure Hue in cloudera manager tp search on Tagging. 
