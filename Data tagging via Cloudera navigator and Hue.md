@@ -35,7 +35,10 @@ Navigator is made up of two components:
 - Auditing Component(available @ port 7186)  
 - Metadata Component(available @ port 7187)  
   
-Figure#8 (for Auditing architecture) 
+Figure#8 (for Auditing architecture)  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1FE5bxZgzAbSBSyJTzxptFPNGWucibG5A" width="650"/>
+</p>   
   
 HDFS operations captured for audit purposes are operations that access or modify the data or metadata of a file or a directory, operations denied due to lack of privileges.  
 Hive Operations captured for audit purpose will be any operations sent by HiveServer2, except for those captured by Sentry auditing like GRANT, REVOKE and ACCESS TO METADATA ONLY. naigator will also log operations denied due to lack of privileges. **USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**. Action taken against hive via the Hive CLI(HiveServer1) are not audited.  
