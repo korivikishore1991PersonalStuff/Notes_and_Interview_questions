@@ -27,6 +27,7 @@ The aim of this data tagging is ease the time required to bowse, gather and cate
 - Oozie workflows  
 - Spark jobs  
 - Sqoop jobs  
+  
 Navigator is made up of two components:  
 - Auditing Component  
 - Metadata Component  
