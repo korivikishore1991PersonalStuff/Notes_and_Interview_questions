@@ -1,6 +1,7 @@
 # Table of contents  
 - [Introduction](#Introduction)
 - [Expolring_Auditing_Component_API](#Expolring_Auditing_Component_API)
+- [Expolring_Metadata_Component_API](#Expolring_Metadata_Component_API)
 - [Integrating_Hue_with_Navigator](#Integrating_Hue_with_Navigator)  
 - [DataBase_and_Table_creation](#DataBase_and_Table_creation)    
   * [Creation_of_New_DataBase_with_technical_metadata](#Creation_of_New_DataBase_with_technical_metadata)    
@@ -57,6 +58,15 @@ Figure#9a and Figure#9b (Audit checking via Navigator)
   <img src="https://drive.google.com/uc?export=view&id=1K9x6Mzmatn-3q7AnaSVFA9jifATW1QHx" width="650"/>
 </p>  
     
+# Expolring_Metadata_Component_API  
+Navigator provides a web interface for Searching all meta data, Setting business metadata and Viewing relationships between entities in the form of Lineage Diagrams. Navigator's Metadata Component collects two different kinds of metadata from entities(iles, tables, directories etc..) in the cluster:  
+1. technical metadata:  
+technical metadata is the metadata which is automatically generated as the entity is created and throughout its life cycle. For instance, the date that entity was created, entity name, the date that entity was moved, the date that entity was destroyed, who owns the entity, when entity was last modified etc...  Technical metadata cann't be modified by an end user.  
+2. business metadata:  
+Business metadata is assigned to entities, such as tables or table columns, to add business meaning and context. Business metadata is added by end users via Navigator. Business metadata provides increased business value because users can:  
+  i) Assign customized and meaningful annotations to make data exploration more intuitive for business users.  
+  ii) Tag cluster entities to aid with data lifecycle management.  
+  
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
 Configure Hue in cloudera manager tp search on Tagging. 
