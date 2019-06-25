@@ -1,7 +1,10 @@
 # Table of contents  
-- [Introduction](#Introduction)
-- [Expolring_Auditing_Component_API](#Expolring_Auditing_Component_API)
-- [Expolring_Metadata_Component_API](#Expolring_Metadata_Component_API)
+- [Introduction](#Introduction)  
+  * [Auditing_Component](#Auditing_Component)
+  * [Metadata_Component](#Metadata_Component)
+- [Expolring_Auditing_Component_API](#Expolring_Auditing_Component_API)  
+- [Expolring_Metadata_Component_API](#Expolring_Metadata_Component_API)  
+  * [Metadata_Component_Operations](#Metadata_Component_Operations)
 - [Integrating_Hue_with_Navigator](#Integrating_Hue_with_Navigator)  
 - [DataBase_and_Table_creation](#DataBase_and_Table_creation)    
   * [Creation_of_New_DataBase_with_technical_metadata](#Creation_of_New_DataBase_with_technical_metadata)    
@@ -36,18 +39,27 @@ Navigator is made up of two components:
 - Auditing Component(available @ port 7186)  
 - Metadata Component(available @ port 7187)  
   
+## Auditing_Component    
+  
 Figure#8 (for Auditing architecture)  
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1FE5bxZgzAbSBSyJTzxptFPNGWucibG5A" width="650"/>
 </p>   
-  
-Figure#10 (Navigator Metadata Component Architecture)   
   
 HDFS operations captured for audit purposes are operations that access or modify the data or metadata of a file or a directory, operations denied due to lack of privileges.  
 Hive Operations captured for audit purpose will be any operations sent by HiveServer2, except for those captured by Sentry auditing like GRANT, REVOKE and ACCESS TO METADATA ONLY. naigator will also log operations denied due to lack of privileges. **USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**. Action taken against hive via the Hive CLI(HiveServer1) are not audited.  
 All Hue operations are captured for audit purpose, except for those captured by Sentry auditing.  
 Impala operations were captured for audit purpose and queries denied due to lack of privileges.  
   
+## Metadata_Component  
+  
+Figure#10 (Navigator Metadata Component Architecture)    
+  
+The Metadata component extracts metadata from cluster services including HDFS, Hive, Impala, YARN, MapReduce, Oozie, Pig and Sqoop 1. Spark support had limitaions like lineage is produced only for data that is read/written and processed using the Dataframe and SparkSQL APIs. Lineage is not available for data that is read/written or processed using Spark's RDD APIs. The spark extractor included prior to CDH 5.11 and enabled by setting the safety valve, ```nav.spark.extraction.enable=true``` is being deprecated, and could be removed completely in a future release. If upgrading from CDH 5.10 or earlier and were using the extractor configured with this safety valve, be sure to remove the setting when you upgrade.  
+HDFS metadata is extracted when the service starts up and also soon after each HDFS checkpoint, if HDFS high availability is configured, which is typical in production cluster, then the metadata is extracted from the journal nodes. So, metadata should be available pretty much instantaneously.  
+For Hive and Sqoop, the metadata is extracted from Hive's metastore server. So, that's the database which stores Hive's metadata.  
+For YARN jobs metadata is extracted from the Job History Server, map reduce is extracted from Job Tracker, Oozie workflows are extracted from the oozie Server and Pig script runs are extracted from the jobTracker(MapReduce 1) or Job History Server(YARN).  
+    
 # Expolring_Auditing_Component_API  
 audit data can be accessed through the web interface or via the REST API.  
 As an example of the REST API, issue this curl CMD to obtain all audit events where the 'Command' field is equal to 'GlobalHostInstall' ``` curl -u admin:admin 'http://cmhost:7180/api/v6/audits?query=command==GlobalHostInstall' ```  
@@ -70,6 +82,12 @@ Business metadata is assigned to entities, such as tables or table columns, to a
   ii) Tag cluster entities to aid with data lifecycle management.  
   
 The Navigator Metadata compoenent extracts metadata at startup and maintains a fresh view through periodic extractions. The extracted metadata is indexed and used by the embedded Solr search engine. Solr provides support for the metadata discovery and exploration features that you access from the Metadata web interface.  
+  
+## Metadata_Component_Operations  
+Extracted metadata is indexed in order to facilitate fast searches. The Solr schema indexes two types of metadata, Entity properties and relationships between entities.  
+Both technical and business metadata can be directly searched using the cloudera navigator metadata web interface.  
+  
+Figure#11(Metadata Querying via Navigator)  
   
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
