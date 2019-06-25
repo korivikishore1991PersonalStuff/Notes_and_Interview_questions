@@ -41,6 +41,8 @@ Figure#8 (for Auditing architecture)
   <img src="https://drive.google.com/uc?export=view&id=1FE5bxZgzAbSBSyJTzxptFPNGWucibG5A" width="650"/>
 </p>   
   
+Figure#10 (Navigator Metadata Component Architecture)   
+  
 HDFS operations captured for audit purposes are operations that access or modify the data or metadata of a file or a directory, operations denied due to lack of privileges.  
 Hive Operations captured for audit purpose will be any operations sent by HiveServer2, except for those captured by Sentry auditing like GRANT, REVOKE and ACCESS TO METADATA ONLY. naigator will also log operations denied due to lack of privileges. **USERS NEED TO BE USING BEELINE OR HUE INORDER FOR DATA CAPTURE VIA NAVIGATOR**. Action taken against hive via the Hive CLI(HiveServer1) are not audited.  
 All Hue operations are captured for audit purpose, except for those captured by Sentry auditing.  
@@ -68,7 +70,6 @@ Business metadata is assigned to entities, such as tables or table columns, to a
   ii) Tag cluster entities to aid with data lifecycle management.  
   
 The Navigator Metadata compoenent extracts metadata at startup and maintains a fresh view through periodic extractions. The extracted metadata is indexed and used by the embedded Solr search engine. Solr provides support for the metadata discovery and exploration features that you access from the Metadata web interface.  
-Figure#10 (Navigator Metadata Component Architecture)   
   
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
