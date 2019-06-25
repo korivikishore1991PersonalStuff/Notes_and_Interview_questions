@@ -66,6 +66,7 @@ technical metadata is the metadata which is automatically generated as the entit
 Business metadata is assigned to entities, such as tables or table columns, to add business meaning and context. Business metadata is added by end users via Navigator. Business metadata provides increased business value because users can:  
   i) Assign customized and meaningful annotations to make data exploration more intuitive for business users.  
   ii) Tag cluster entities to aid with data lifecycle management.  
+  
 The Navigator Metadata compoenent extracts metadata at startup and maintains a fresh view through periodic extractions. The extracted metadata is indexed and used by the embedded Solr search engine. Solr provides support for the metadata discovery and exploration features that you access from the Metadata web interface.  
 Figure#10 (Navigator Metadata Component Architecture)   
   
