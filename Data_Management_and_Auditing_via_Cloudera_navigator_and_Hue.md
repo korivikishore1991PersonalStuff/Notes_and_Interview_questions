@@ -199,7 +199,7 @@ technical metadata in hive can be specified using table propetrties.
 ```hql
 ALTER TABLE table_name SET TBLPROPERTIES ('key1'='value1');
 ```    
-to search for this property, we must specify ```hql tp_key1:value1```  
+to search for this property, we must specify ```tp_key1:value1```  
 This technical metadata is extended attributes, which are added by Hive clients.  
  
 A sample after clear definition of techinical and managed metadata is given below, the below Hive table has custom metadata consisting of tags tag1 and tag2, a custom key-value pair customkey-value, and an extended Hive attribute key-value pair key1-value1. The Details page also displays the table schema.  
