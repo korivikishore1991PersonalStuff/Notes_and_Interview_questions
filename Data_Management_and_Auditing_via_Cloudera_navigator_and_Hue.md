@@ -54,6 +54,9 @@ Impala operations were captured for audit purpose and queries denied due to lack
 ## Metadata_Component  
   
 Figure#10 (Navigator Metadata Component Architecture)    
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1b0ImlGghTQTGNrWfnvqL9UMua2jeDi_G" width="650"/>
+</p>   
   
 The Metadata component extracts metadata from cluster services including HDFS, Hive, Impala, YARN, MapReduce, Oozie, Pig and Sqoop 1. Spark support had limitaions like lineage is produced only for data that is read/written and processed using the Dataframe and SparkSQL APIs. Lineage is not available for data that is read/written or processed using Spark's RDD APIs. The spark extractor included prior to CDH 5.11 and enabled by setting the safety valve, ```nav.spark.extraction.enable=true``` is being deprecated, and could be removed completely in a future release. If upgrading from CDH 5.10 or earlier and were using the extractor configured with this safety valve, be sure to remove the setting when you upgrade.  
 HDFS metadata is extracted when the service starts up and also soon after each HDFS checkpoint, if HDFS high availability is configured, which is typical in production cluster, then the metadata is extracted from the journal nodes. So, metadata should be available pretty much instantaneously.  
@@ -88,6 +91,9 @@ Extracted metadata is indexed in order to facilitate fast searches. The Solr sch
 Both technical and business metadata can be directly searched using the cloudera navigator metadata web interface.  
   
 Figure#11(Metadata Querying via Navigator)  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1_JUwtAyCsCtepGaWwyOaHt7GgaunOR5G" width="650"/>
+</p>  
   
 # Integrating_Hue_with_Navigator  
 Embedded Search & Tagging via metastore manager in Hue and cloudera navigator can be used for Data Search and Tagging via Hue and navigator.  Aplicable for Cloudera Enterprise 5.11 and greater.   
