@@ -164,9 +164,9 @@ Navigator is available on Port 7187 via navigator metadata server, the navigator
 ## Searching_in_navigator  
 In Cloudera Navigator, metadata search is implemented by an embedded Solr engine that supports the syntax given by LuceneQParserPlugin. Navigator provides searching capabilities by components, storage, type(table, feilds), tags and size etc..  
 Example:  
-Union type searching ```lucene  (*ers_stage_tls*) +(sourceType:hdfs sourceType:hive) +(type:table)```, to search for source types of HDFS and Hive or for table type or with string ```ers_stage_tls``` in the path.  
-Intersection type searching ```lucene +((+*ers_stage_tls* +type:table))```, to search for table type with string ```ers_stage_tls``` in the path.  
-boolean type searching ```lucene +((+*ers_stage_tls* +type:table)) +(-deleted:true)```, to search for table type with string ```ers_stage_tls``` in the path, which are not deleted.  
+Union type searching ```(*ers_stage_tls*) +(sourceType:hdfs sourceType:hive) +(type:table)```, to search for source types of HDFS and Hive or for table type or with string ```ers_stage_tls``` in the path.  
+Intersection type searching ```+((+*ers_stage_tls* +type:table))```, to search for table type with string ```ers_stage_tls``` in the path.  
+boolean type searching ```+((+*ers_stage_tls* +type:table)) +(-deleted:true)```, to search for table type with string ```ers_stage_tls``` in the path, which are not deleted.  
   
 ## Defineing_and_searching_Managed_Metadata  
 Navigator provides capabilities to adding and Editing Metadata(tags, cloumns, description at all column, tables and database level) Using the Navigator UI.  
