@@ -59,4 +59,12 @@ Spark (Apache Spark): Apache Spark is a fast, in-memory data processing engine t
  
 Stream processing: Stream processing is designed to act on real-time and streaming data with “continuous” queries. Combined with streaming analytics i.e. the ability to continuously calculate mathematical or statistical analytics on the fly within the stream, stream processing solutions are designed to handle high volume in real time. 
 
-Structured v Unstructured Data: This is one of the ‘V’s of Big Data i.e.Variety. Structured data is basically anything than can be put into relational databases and organized in such a way that it relates to other data via tables. Unstructured data is everything that can’t – email messages, social media posts and recorded human speech etc.
+Structured v Unstructured Data: This is one of the ‘V’s of Big Data i.e.Variety. Structured data is basically anything than can be put into relational databases and organized in such a way that it relates to other data via tables. Unstructured data is everything that can’t – email messages, social media posts and recorded human speech etc.  
+  
+CAP theorem in Big Data  
+CAP Theorem is a concept that a distributed database system can only have 2 of the 3: Consistency, Availability and Partition Tolerance.   
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1S9vFVqt7aJ6Wzpxm1xYVtiAJIStjwrk2" width="650"/>
+</p>
+  
+  
