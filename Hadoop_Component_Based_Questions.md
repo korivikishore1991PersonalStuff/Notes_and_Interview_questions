@@ -289,7 +289,17 @@ real Outputs:
 --executor-cores = 3 
 --num-executors = ({(84/6)-1}/3)*6 = 24  
 --executor-memory = {(336*3)/(6*((84/6)-1))}*0.9 = 12 GB  
+```  
+### How to tune default partitions and parallelism in Spark?  
+Via CMD  
 ```
+./bin/spark-submit --conf spark.sql.shuffle.partitions=300 --conf spark.default.parallelism=300
+```  
+In program  
+```
+sqlContext.setConf("spark.sql.shuffle.partitions", "300")
+sqlContext.setConf("spark.default.parallelism", "300")
+```  
 ### Hadoop uses replication to achieve fault tolerance. How is this achieved in Apache Spark?  
 Data storage model in Apache Spark is based on RDDs. RDDs help achieve fault tolerance through lineage. RDD always has the information on how to build from other datasets. If any partition of a RDD is lost due to failure, lineage helps build only that particular lost partition.  
 ### Why is Spark conf and spark context related to the program?  
