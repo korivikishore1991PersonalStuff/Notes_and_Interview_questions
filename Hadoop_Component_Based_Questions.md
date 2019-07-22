@@ -295,7 +295,7 @@ Via CMD
 ```
 ./bin/spark-submit --conf spark.sql.shuffle.partitions=300 --conf spark.default.parallelism=300
 ```  
-In program  
+In program, we can use "dataframe.repartition"  
 ```
 sqlContext.setConf("spark.sql.shuffle.partitions", "300")
 sqlContext.setConf("spark.default.parallelism", "300")
