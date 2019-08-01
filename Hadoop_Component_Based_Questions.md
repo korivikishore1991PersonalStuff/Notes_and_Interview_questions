@@ -570,6 +570,40 @@ object spark_git extends App{
 When case class is provide it would be useful to import sqlcontext.implicits._ and use toDF() method to convert rdds to dataframes.  
 BUT  
 When you declared schema using StructType and StructField its usefule to create dataframes using createDataFrame  
+  
+A sample conversion for DF()  
+```scala
+import org.apache.spark.sql.DataFrame
+import org.apache.spark.sql.Row
+import org.apache.spark.rdd.RDD
+val df: DataFrame  = Seq(("foo", 1), ("bar", 2)).toDF("key", "value")
+val rdd: RDD[Row] = df.rdd
+
+val rdd: RDD[(String, Int)] = sc.parallelize(Seq(("foo", 1), ("bar", 2)))
+val df1: DataFrame = rdd.toDF("name", "value")
+```  
+  
+A sample conversion for StructType  
+```scala
+import org.apache.spark.sql.types.{StructType, StructField}
+import org.apache.spark.sql.types.{IntegerType, StringType}
+val data = Seq(
+  Row(8, "bat"),
+  Row(64, "mouse"),
+  Row(-27, "horse")
+)
+val schema = StructType(
+  List(
+    StructField("number", IntegerType, true),
+    StructField("word", StringType, true)
+  )
+)
+val df2 = sqlContext.createDataFrame(
+  sc.parallelize(data),
+  schema
+) // From 2.x use spark instead of sqlContext
+```  
+  
 Using toDF():  
 ```Scala
 case class Data(ID:String, infect:String, induct:String, adult:String)  
