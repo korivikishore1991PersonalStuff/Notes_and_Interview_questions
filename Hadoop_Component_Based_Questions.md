@@ -228,6 +228,14 @@ A block is read in the form of a key-value pair in TextInputFormat, where the ke
   
 ## SparkCore  
 ### Difference between Map-reduce and spark? Advantages and disadvantages and execution methods?  
+#### Map Side:  
+map/Reduce reads via mappers loads it into in memory buffer which spills into multiple slits on local disk which are partitioned using combiner for respective reducers, these splits are condensed into a single files which is partitoned for reducers in HDFS.  
+spark reads via mappers and creates a reducer files per each reducers, which create multiple shuffel files. If "spark.shuffle.consolidateFiles" is set to "true", mappers on the same core share a file, creating shuffel files equal to number of reducers per each core of the node.  
+
+#### Reduce Side:  
+On Map/Reduce side reducer pulls the intermediate files from the HDFS via spills condenses into merged files in the Sort phase, which are ultimalty reduced to reducer files.  
+On Spark side the mappers push the data to reducers via memory buffers, which spills the data to disk if neccessary. These files are finally sent to the Reduce phase.  
+
 Conceptually DAG model is a strict generalization of MapReduce model. DAG-based systems like Spark and Tez that are aware of the whole DAG of operations can do better global optimizations than systems like Hadoop MapReduce which are unaware of the DAG to be executed.  
   
 <p align="center">
