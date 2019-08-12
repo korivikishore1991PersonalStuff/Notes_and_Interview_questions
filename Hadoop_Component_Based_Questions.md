@@ -238,6 +238,29 @@ On Spark side the mappers push the data to reducers via memory buffers, which sp
 
 Conceptually DAG model is a strict generalization of MapReduce model. DAG-based systems like Spark and Tez that are aware of the whole DAG of operations can do better global optimizations than systems like Hadoop MapReduce which are unaware of the DAG to be executed.  
   
+Map/Reduce_Detalied_views:  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1sQfyTzNkd_SlcKjoehx24c5l5y0-82oK" width="650"/>
+</p>  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=120ymh3KGHSFLs45JQVQIatGRVuBQVEqc" width="650"/>
+</p>  
+map_reduce_Sort_phase_exploration:  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1KURTbELh4dDqwwRnf6tFCvzZATeHkJlf" width="650"/>
+</p>  
+Spark_vs_MR_Map_Side:  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1KUN6uOwJjujH7jHFqwfc3Vt9jlRoAKjn" width="650"/>
+</p>  
+Spark_vs_MR_Reduce_Side:  
+<p align="center">
+  <img src="https://drive.google.com/uc?export=view&id=1KlSgP6U3dTXslvM2jrDB3JD6cy3-NtRH" width="650"/>
+</p>  
+Ref:  
+https://www.youtube.com/watch?v=iaw5kG9q6xw  
+http://blog.ditullio.fr/2015/12/28/hadoop-basics-secondary-sort-in-mapreduce/  
+  
 <p align="center">
   <img src="https://www.dropbox.com/s/99ctmul7unk6wvk/Map-Reduce.png?raw=1" width="650"/>
   <img src="https://www.dropbox.com/s/8uw8f0ieu4uuqgi/Spark.jpg?raw=1" width="650"/>
