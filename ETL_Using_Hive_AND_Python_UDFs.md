@@ -310,6 +310,9 @@ INSERT INTO TABLE test_delete VALUES (33, 'aaa33');
 INSERT INTO TABLE test_delete VALUES (34, 'aaa34');
 INSERT INTO TABLE test_delete VALUES (35, 'aaa35');
 
+-- or can use
+--INSERT INTO TABLE test_delete VALUES (31, 'aaa31'), (32, 'aaa32'), (33, 'aaa33'), (34, 'aaa34'), (35, 'aaa35'), (35, 'aaa35');
+
 hive> select * from test_delete;
 OK
 31 aaa31
