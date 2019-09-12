@@ -1,4 +1,6 @@
 Remember to Document every thing, do a KT with a plan and get the KT plan approved by the manager first.  Mail the summary of every KT session for each and every session. Make sure about the issue that cann't be tutored and communicate basic iteams are there cross to bear.  
+# What are U doing  
+I typically perform numerous tasks to acomplish various activities.  
 # Work Justification  
 It's any Developers primary responsibility towards the end Application users like yourself, to be facilitated with end results of Data Analytics and Descriptive statistics and doesn't have to get bogged down in the locus of programming difficulties due to the processes like Data Extraction, Loading and Transformations. So, it's my job to abstract you from these mid-level tasks.  
 To perform the forth mentioned jobs. I typically work with numerous HDP components to perform various tasks in-regards to Data Extraction, Loading and Transformations.  
