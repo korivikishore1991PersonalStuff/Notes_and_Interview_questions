@@ -28,7 +28,7 @@ import os
 sys.path.append(os.path.abspath("C:/Users/n906147/Desktop/Education/dsfs_python_packages"))
 ```  
   
-## type syntax  
+## Type syntax  
 Example for type specifaction of a Vector  
 ```code
 from typing import List
