@@ -1,4 +1,8 @@
-## Interview#4  
+## Interview#  
+Hive map side joins and other optimizations?  
+Spark executors and drivers configurations?  
+Spark sql-shuffle-join and repartitions?  
+Hadoop small file probleams and possible compactions?  
 What is star schema?  
 Difference between Machine Learning, Data Science, AI, Deep Learning, and Statistic?  
 Joins pocedure in Map/Reduce?  
