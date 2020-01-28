@@ -1,4 +1,5 @@
 ## Interview#  
+How do you pass arguments in Hive? Using hivevar in -f or ${} in -e  
 Hive map side joins and other optimizations?  
 Spark executors and drivers configurations?  
 Spark sql-shuffle-join and repartitions?  
