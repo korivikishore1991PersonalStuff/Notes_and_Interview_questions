@@ -43,7 +43,17 @@ is is the last line
  line is the 1st lower case
  is the last
 ```  
-
+  
+### Using GREP to conditionally show only next line after the matched one  
+```bash
+[svc_vzt_cja_dld@vztcja-keslnch01 vcmcja]$ cat grep_test
+blah
+boo
+yeah
+[svc_vzt_cja_dld@vztcja-keslnch01 vcmcja]$ grep -A1 'blah' grep_test|grep -v "blah"
+boo
+```  
+  
 ### Using SED and GREP for Horizontal filtering and awk for vertical filtering
 ```bash
 korivi@Korivi16GB:~$ cat demo_file
