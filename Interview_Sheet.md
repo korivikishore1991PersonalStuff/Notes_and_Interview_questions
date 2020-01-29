@@ -1,4 +1,5 @@
 ## Interview#  
+beeline vs hive what is the difference? Basically hive works when hive-client is installed on node in the cluster, where as beeline is used for connecting to a separate HiveServer2 process over Thrif.  
 How do you pass arguments in Hive? Using hivevar in -f or ${} in -e  
 Hive map side joins and other optimizations?  
 Spark executors and drivers configurations?  
