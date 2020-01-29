@@ -1,5 +1,6 @@
 ## Interview#  
 beeline vs hive what is the difference? Basically hive works when hive-client is installed on node in the cluster, where as beeline is used for remotly connecting to a separate HiveServer2 process over Thrif.  
+The primary difference between the two involves how the clients connect to Hive. The Hive CLI connects directly to the Hive Driver and requires that Hive be installed on the same machine as the client. However, Beeline connects to HiveServer2 and does not require the installation of Hive libraries on the same machine as the client. Beeline is a thin client that also uses the Hive JDBC driver but instead executes queries through HiveServer2, which allows multiple concurrent client connections and supports authentication. HiveServer2 also offers enchanced security via JDBC polices in Ranger and sentry.  
 How do you pass arguments in Hive? Using hivevar in -f or ${} in -e  
 Hive map side joins and other optimizations?  
 Spark executors and drivers configurations?  
