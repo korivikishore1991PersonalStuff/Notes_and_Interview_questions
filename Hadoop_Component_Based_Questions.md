@@ -887,5 +887,6 @@ Yes, Sqoop lauches only Mappers to import and Export Data.
   
 # programming CLI  
 ## Scala Options class  
-## Python getopt function  
+## Python getopt or argparse function  
+## Bash set -u for mandatory argument specification and bypassing it using !$1   
 
