@@ -1,0 +1,34 @@
+I have been working has a Hadoop Big Data Developer for more then 5 year with primay focus on Spark, Sqoop, Hive, Flume, HBase and Kafka.
+
+I have experience using various paltforms like HDP and CDH, with strongfundamentals in data processing, modelling and warehouseing via hadlling all sorts of data like structured, semi-structured and un-structured.
+
+I also have good knowledge of various programming languages like Scala, Python and Java with strong expertize in Shell Scripting and SQL.
+
+I have Used Oozie, YARN, resource manager, git, TFS and cron of deployment, sheduling and maintaning of Code.
+
+I also had Experince with graphical tools like Tableau, Arcadia and Zeepline.
+===================================================================================================
+===================================================================================================
+===================================================================================================
+At my most recent project at AAA, I have worked on building organizational level datalake on CDH to ingest, store, transform, retrive and report real time, hourly, daily and weekly data ingestions.
+
+The purpose of the project is Provide:
+        Unified Data View.
+        Enable time travel via historical data storage
+        Centralized maintanace.
+        Schema Enforcement and format compatibility.
+        Otimized storage and reduce retrival and mainipulation costs.
+
+The Framework used is:
+        for ingestion: Attunity, Kafka, Sqoop
+        for processing using: Spark, Delta Lake from DataBricks, Hive
+        for Retrival using: Impala, beeline, Hive
+
+The Arcitecture Overview is:
+        Data is ingested, streamed via CDC onto to a staging layer
+        The extracted data on staging layer is processed and transformed and stored onto a base and master layers.
+        The Ready to use data is refined from the master layer on to Analytics layer, upon which is data science team does driscriptive, pridictive and prescriptive analytics for reporting.
+        Added protection is applied on the master layer using delta lake to wrap the tables when processing with SPark.
+
+I have also assisted on enabling a Ploicy-framework for "CCPA" to retrive, update and delete customer records as requested.
+
