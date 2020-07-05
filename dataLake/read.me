@@ -1,1 +1,2 @@
 Has concept on DataLake implementation for Transactional change captures manullay and using Delta lake from databricks.  
+The only drawback is the DeltaLake tool used for CDC captures changes using spark and delta but any changes done through HDFS or the underlying file system is not captured and can add descripencies to the datalake. Refer @ https://medium.com/swlh/what-is-and-why-delta-lake-how-change-data-capture-cdc-gets-benefits-from-delta-lake-fb177bdab8bc    
