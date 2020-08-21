@@ -2,7 +2,7 @@
   - [optimal-file-size-for-hdfs](#optimal-file-size-for-hdfs)  
   - [optimal-file-size-for-s3](#optimal-file-size-for-s3)
 - [compaction-for-small-file-problem-in-spark](#compaction-for-small-file-problem-in-spark)  
-- [compaction-for-small-file-probleam-in-hive]#compaction-for-small-file-probleam-in-hive)   
+- [compaction-for-small-file-probleam-in-hive](#compaction-for-small-file-probleam-in-hive)   
   - [non-transactional-traditional-tables](#non-transactional-traditional-tables)  
   - [transactional-tables](#transactional-tables)  
 - [Reference_links](#reference_links)  
