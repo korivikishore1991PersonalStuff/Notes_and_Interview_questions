@@ -391,6 +391,49 @@ Transactional Table: TBLPROPERTIES ("transactional"="true")
 # Data Ingestions   
 For all Data Ingestions a Temporary or staging tables(holds current data)[orders_stg] and Final tables(holds all data)[orders] is neccessary.  
 Optionally can use internall hive columns like input__file__name, current_timestamp for better tracking purpose.  
+At Source Orders table is in JSON format and contains below fields.  
+1)   ID  
+2)   Order_ID  
+3)   Product_ID  
+4)   Product_Name  
+5)   Quanity  
+6)   Product_Price  
+7)   Customer_Id  
+8)   Customer_Name  
+9)   Order_Date  
+Stage table:  
+```sql 
+CREATE EXTERNAL TABLE IF NOT EXISTS orders_stg (
+id string,
+customer_id string,
+customer_name string,
+product_id string,
+product_name string,
+product_price string,
+quantity string,
+order_date string,
+src_update_ts string
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'LOCATION '/user/dks/datalake/orders_stg'; //source data location  
+```  
+Final Table:  
+```sql
+CREATE TABLE IF NOT EXISTS orders (
+id bigint,
+customer_id string,
+customer_name string,
+product_id int,
+product_name string,
+product_price decimal(12,2),
+quantity int,
+src_update_ts timestamp,
+src_file string,
+ingestion_ts timestamp
+)
+PARTITIONED BY (order_date date)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+LOCATION '/user/dks/datalake/orders';
+```  
 ## Complete Load:   
 In this method, entire table/partition is truncated and then added with new full set of data.  
 ```sql
@@ -416,6 +459,41 @@ select `(order_date)?+.+`, input__file__name, current_timestamp as ingestion_ts,
 ```  
 ## Insert or Update Ingestion: 
 In this method, data with new key is inserted to the table, whereas if the relevant key already exists in partition/table then record is updated with latest info.  
+New data is added or updated to the existing partition/table based on a row key. Data is appended to the table if the record contains new “key” otherwise existing record is updated with latest information. A row level timestamp is must for both current increamental data and full table data for this traditional solution to work.     
+This option is only possible when a row in the table can be identified uniquely using one or more columns. In orders table, “ID” field is row key. src_update_ts field indicates record time stamp.  
+Method 1: use over() function to find out latest record that needs to be updated/inserted.  
 ```sql
-```  
-Also, refer to ## ACID in Hive  
+with new_data as(select * from orders_stg)
+insert overwrite table orders partition(order_date)
+select `(rank_no)?+.+` from (
+(
+select *, row_number() over(partition by order_date,ID order by src_update_ts desc) rank_no from(
+select * from orders where order_date in (select distinct order_date from new_data)
+Union
+select `(order_date)?+.+`, input__file__name, current_timestamp as ingestion_ts, cast(order_date as date) as part from new_data
+)  update_data
+where rank_no=1 distribute by order_date order by ID
+--rank_no=1 indicates recent record
+--`(order_date)?+.+` :  This selects all the columns except order_date
+```   
+Method 2: In this method, a temporary table is created by merging data from both original and incremental tables. Next data in temporary table is filtered to select only the records with latest timestamp. Last step is original table is dropped and temporary table is renamed with original table name. This approach is more suitable non-partition tables. For example if orders table is not partitioned.  
+```sql
+--Step1=> RECONCILE VIEW: This view combines record set from both original table and incremental data.
+With new_data as (select * from orders_stg)
+create view recon_orders as (
+   select final_data.* from
+   (select * from orders where order_date Union all
+select `(order_date)?+.+`, input__file__name, current_timestamp as ingestion_ts, cast(order_date as date) as part from new_data
+)  final_data
+inner join (select order_date, ID, max(src_update_ts) as max_src_upd_ts  from   (select order_date, id, src_update_ts from orders   union all
+select order_date,id, src_update_ts from new_data) all_data )  max_data on final_data.id=max_data.id and final_data.src_update_ts=max_data.max_src_upd_ts
+)
+--Step2 =>Insert into temp table
+drop table temp_orders;
+create table temp_orders as
+select * from recon_orders  ---this view is created in step1
+--Step3=> Purge
+drop table orders;
+ALTER TABLE recon_orders RENAME TO orders;
+```
+Refer to https://medium.com/datakaresolutions/hive-design-patterns-783d6104d852 and also, refer to "ACID in Hive" above.  
