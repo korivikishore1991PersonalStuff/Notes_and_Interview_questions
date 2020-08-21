@@ -380,3 +380,11 @@ and optionally
   <value>2</value>
  </property>
 ```
+  
+## Serdes in Hive
+JSON: org.apache.hive.hcatalog.data.JsonSerDe  
+TextFile: STORED AS TEXTFILE;  
+Parquet: ROW FORMAT SERDE 'parquet.hive.serde.ParquetHiveSerDe'  STORED AS INPUTFORMAT 'parquet.hive.DeprecatedParquetInputFormat' OUTPUTFORMAT 'parquet.hive.DeprecatedParquetOutputFormat';  [OR] STORED AS PARQUET;  
+HBase: STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,details:carrier_desc") TBLPROPERTIES ("hbase.table.name" = "carriers")  
+Transactional Table: TBLPROPERTIES ("transactional"="true")  
+
