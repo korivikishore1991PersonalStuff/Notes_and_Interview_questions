@@ -387,4 +387,35 @@ TextFile: STORED AS TEXTFILE;
 Parquet: ROW FORMAT SERDE 'parquet.hive.serde.ParquetHiveSerDe'  STORED AS INPUTFORMAT 'parquet.hive.DeprecatedParquetInputFormat' OUTPUTFORMAT 'parquet.hive.DeprecatedParquetOutputFormat';  [OR] STORED AS PARQUET;  
 HBase: STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,details:carrier_desc") TBLPROPERTIES ("hbase.table.name" = "carriers")  
 Transactional Table: TBLPROPERTIES ("transactional"="true")  
+  
+# Data Ingestions   
+For all Data Ingestions a Temporary or staging tables(holds current data)[orders_stg] and Final tables(holds all data)[orders] is neccessary.  
+Optionally can use internall hive columns like input__file__name, current_timestamp for better tracking purpose.  
+## Complete Load:   
+In this method, entire table/partition is truncated and then added with new full set of data.  
+```sql
+with new_data as(select * from orders_stg)
+insert overwrite table orders partition(order_date)
+select `(order_date)?+.+`, input__file__name, current_timestamp as ingestion_ts, cast(order_date as date) as part from new_data
+```  
+## Append Load:  
+New data is appended to existing data for each batch of data refresh.  
+```sql
+with new_data as(select * from orders_stg)
+insert overwrite table orders partition(order_date)
+(select * from orders where order_date in
+(select distinct order_date from new_data)  --existing data
+Union all
+(select `(order_date)?+.+`, input__file__name, current_timestamp as ingestion_ts, cast(order_date as date) as part from new_data )
 
+[OR]
+
+with new_data as(select * from orders_stg)
+insert into table orders partition(order_date)
+select `(order_date)?+.+`, input__file__name, current_timestamp as ingestion_ts, cast(order_date as date) as part from new_data 
+```  
+## Insert or Update Ingestion: 
+In this method, data with new key is inserted to the table, whereas if the relevant key already exists in partition/table then record is updated with latest info.  
+```sql
+```  
+Also, refer to ## ACID in Hive  
