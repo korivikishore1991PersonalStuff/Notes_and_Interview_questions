@@ -302,7 +302,10 @@ set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
 
 create table test_delete ( id int, name string )
 CLUSTERED BY (id) INTO 2 BUCKETS STORED AS ORC
-TBLPROPERTIES ("transactional"="true");
+TBLPROPERTIES ("transactional"="true",
+"compactor.mapreduce.map.memory.mb"="3072",     -- specify compaction map job properties
+"compactorthreshold.hive.compactor.delta.num.threshold"="20",  -- trigger minor compaction if there are more than 20 delta directories
+"compactorthreshold.hive.compactor.delta.pct.threshold"="0.5" -- trigger major compaction if the ratio of size of delta files to size of base files is greater than 50%);
 
 INSERT INTO TABLE test_delete VALUES (31, 'aaa31');
 INSERT INTO TABLE test_delete VALUES (32, 'aaa32');
