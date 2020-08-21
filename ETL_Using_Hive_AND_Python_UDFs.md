@@ -293,7 +293,7 @@ hive>set hive.auto.convert.join=false;  // if we do not do this, automatically M
 SELECT u.name,u.salary FROM buck_dept d  INNER JOIN buck_emp u ON d.id = u.id;
 ```  
   
-## ACID in Hive  
+# ACID in Hive  
 ```SQL
 set hive.support.concurrency=true;
 set hive.enforce.bucketing=true;
