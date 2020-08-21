@@ -1,12 +1,11 @@
-[optimal-file-size](#optimal-file-size)  
-- [optimal-file-size](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#optimal-file-size)  
-  - [optimal-file-size-for-hdfs](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#optimal-file-size-for-hdfs)  
-  - [optimal-file-size-for-s3](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#optimal-file-size-for-s3)
-- [compaction-for-small-file-problem-in-spark](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#compaction-for-small-file-problem-in-spark)  
-- [compaction-for-small-file-probleam-in-hive](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#compaction-for-small-file-probleam-in-hive)   
-  - [non-transactional-traditional-tables](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#non-transactional-traditional-tables)  
-  - [transactional-tables](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#transactional-tables)  
-- [Reference_links](https://github.com/korivikishore1991PersonalStuff/Notes_and_Interview_questions/new/master#reference_links)  
+- [optimal-file-size](#optimal-file-size)  
+  - [optimal-file-size-for-hdfs](#optimal-file-size-for-hdfs)  
+  - [optimal-file-size-for-s3](#optimal-file-size-for-s3)
+- [compaction-for-small-file-problem-in-spark](#compaction-for-small-file-problem-in-spark)  
+- [compaction-for-small-file-probleam-in-hive]#compaction-for-small-file-probleam-in-hive)   
+  - [non-transactional-traditional-tables](#non-transactional-traditional-tables)  
+  - [transactional-tables](#transactional-tables)  
+- [Reference_links](#reference_links)  
 #  
 # Optimal file size  
 Avoid file sizes that are smaller than the configured block size. An average size below the recommended size adds more burden to the NameNode, cause heap/GC issues in addition to cause storage and processing to be inefficient.  
