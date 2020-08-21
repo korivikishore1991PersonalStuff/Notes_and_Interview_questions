@@ -44,6 +44,8 @@ hive> select * from table_name;
   
 ## Deleting all tables in a database:  
 ```SQL
+drop database sample_db cascade;
+[OR]
 hive -e 'use sample_db;show tables' | xargs -I '{}' hive -e 'use sample_db;drop table {}'
 ```
   
