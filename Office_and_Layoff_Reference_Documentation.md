@@ -1,3 +1,10 @@
+# Dealing with Coworking Office bully  
+not cool man. What a bad, bad scenerio in this posffesional atmosphere. I'm nothing but helpful, cheerful, considerate and courteous to you all the time. While you are trying to be silly ungreatful bully.  
+Its not my probleam if anyone feel threatened or if you feel jeouls of me being myself with hope without any pesemtusous and pompus attitudes.  
+I believe in response with humor and kindness, but if you are still trying to continue these sort of bullying, expoliatation, abuse and teo stepping tactics, its better you minimize the interactions.  
+There is fine line between homor, sarcatism, disrespect and abuse. When you cross the line between sarcatism and disrespect, we will start to hurtfull to other people. True bravery is being kind.  
+  
+    
 Remember to Document every thing, do a KT with a plan and get the KT plan approved by the manager first.  Mail the summary of every KT session for each and every session. Make sure about the issue that cann't be tutored and communicate basic iteams are there cross to bear.  
 # What are U doing  
 I typically perform numerous tasks to acomplish various activities.  
