@@ -4,26 +4,26 @@ Its not my probleam if anyone feel threatened or if you feel jeouls of me being 
 I believe in response with humor and kindness, but if you are still trying to continue these sort of bullying, expoliatation, abuse and teo stepping tactics, its better you minimize the interactions.  
 There is fine line between homor, sarcatism, disrespect and abuse. When you cross the line between sarcatism and disrespect, we will start to hurtfull to other people. True bravery is being kind.  
   
-    
+# Layoff refernce      
 Remember to Document every thing, do a KT with a plan and get the KT plan approved by the manager first.  Mail the summary of every KT session for each and every session. Make sure about the issue that cann't be tutored and communicate basic iteams are there cross to bear.  
-# What are U doing  
+## What are U doing  
 I typically perform numerous tasks to acomplish various activities.  
-# Work Justification  
+## Work Justification  
 It's any Developers primary responsibility towards the end Application users like yourself, to be facilitated with end results of Data Analytics and Descriptive statistics and doesn't have to get bogged down in the locus of programming difficulties due to the processes like Data Extraction, Loading and Transformations. So, it's my job to abstract you from these mid-level tasks.  
 To perform the forth mentioned jobs. I typically work with numerous HDP components to perform various tasks in-regards to Data Extraction, Loading and Transformations.  
   
-# Micro KT Justification  
+## Micro KT Justification  
 It’s not my responsibility to be forthcoming in building conceptual and very basic understanding in-regards to structuring, coding, extraction, manipulating, adding and parsing of any codes or components associated with Hadoop platforms like HDP or CDH for other Developers or teammates or any other person. U heard me.  
 These guys are not students and neither e’m I any sort of professor. This is surely not a University my dear Friend.  
   
-# Disappointment Jutification  
+## Disappointment Jutification  
 I feel not only disappointed and wronged but also feel humiliated and exploited. I also feel that I was being harvested for my skills and knowledge, when it comes to this knowledge sharing session.  
 Why shouldn’t I feel so, when things seems so. If it crawls like a snake and sounds like a snake, it is a snake. Buddy.  
   
-# Dealing with Teammates  
+## Dealing with Teammates  
 I will review the notes on these sessions, to see if there are any gaps or empty holes left in the stuff we have covered. Although, I’m sure we went through all the projects and no further sessions will be required. We can do a review tomorrow.  
   
-# Dealing with shitty issues  
+## Dealing with shitty issues  
 The main issue seems to be some-one is using the cluster from backend which is not suggestable and was made clear earlier, 
 this cluster is not designed for the bidirectional loads.  
 i) The job will fail today also because of the query structure given by the arcadia user, show below. It is running for more than 8 hours. I can’t take the responsibility to cancel those because I don’t know if this was planned for testing purpose by other developers or left running unintentionally.  
