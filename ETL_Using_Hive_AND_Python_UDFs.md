@@ -436,7 +436,7 @@ PARTITIONED BY (order_date date)
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 LOCATION '/user/dks/datalake/orders';
 ```  
-## Complete Load:   
+## Complete Load or Overwrites:   
 In this method, entire table/partition is truncated and then added with new full set of data.  
 ```sql
 with new_data as(select * from orders_stg)
@@ -499,3 +499,40 @@ drop table orders;
 ALTER TABLE recon_orders RENAME TO orders;
 ```
 Refer to https://medium.com/datakaresolutions/hive-design-patterns-783d6104d852 and also, refer to "ACID in Hive" above.  
+  
+### Update Hive Partition   
+```sql
+ALTER TABLE <db_name>.<table_name> PARTITION(year = 2012) 
+SET LOCATION 'hdfs://user/user1/some_table/2012';
+--Update MetaStore
+Msck repair table <db_name>.<table_name>
+```  
+## Data Deletion:    
+### Drop/Deleting Hive Partition  
+```sql
+ALTER TABLE some_table DROP IF EXISTS PARTITION(year = 2012);
+--This command will remove the data and metadata for this partition. The drop partition will actually move data to the .Trash/Current directory if Trash is configured, unless PURGE is specified, but the metadata is completely lost.
+--Update MetaStore
+Msck repair table <db_name>.<table_name>
+```  
+  
+### Droping Data in main_table based on Keys from staging_table  
+```sql
+insert overwrite table main_table partition (c,d)
+select t2.a, t2.b, t2.c,t2.d  from staging_table t2 left outer join main_table t1 on t1.a=t2.a;
+```  
+### Droping Data in main_table based on individual Keys 
+```sql
+--Create temp table same as target table:
+Create table main_table_temp like main_table;
+--Insert the subtracted data from main_table to temp table
+INSERT INTO main_table_temp
+select * FROM main_table 
+WHERE  row_key NOT IN (SELECT row_key 
+              FROM   main_table 
+              WHERE  row_key = 'user_specified_value');
+--Insert the subtracted data from temp table into the main table
+INSERT OVERWRITE TABLE main_table select * from main_table_temp;   
+--Delete the temp table
+Drop table main_table_temp;
+```  
