@@ -4,6 +4,7 @@
 comments: using --
 Parameter tuning: using SET
 handeling special charecters in Coloumn_name: using `` like `Col$1/_2`
+Tuning Table Properties: using ALTER command
 ```  
 ## Creation of a Table in Hive:  
 ```SQL
@@ -554,5 +555,46 @@ select xpath(str, '/tag1/tag1.1/text()'), xpath(str, '/tag1/tag1.2/text()') from
 ```  
 ## JSON  
 ETL on JSON can be done using 2 methods.
-loading entrie JSON as String and parsing JSON using 
-###
+1) loading entrie JSON as String and parsing the string JSON using get_json_object()  
+2) Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY
+3) flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW.
+### flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW.  
+#### Lateral view using Explode  
+```sql
+>CREATE TABLE Products
+>(id INT, ProductName STRING, ProductColorOptions ARRAY<STRING>);
+>select * from products;
+1 Watches [“Red”,”Green”]
+2 Clothes [“Blue”,”Green”]
+3 Books [“Blue”,”Green”,”Red”]
+>select explode(ProductColorOptions) from products;
+Red
+Green
+>SELECT p.id,p.productname,colors.colorselection FROM default.products P
+>LATERAL VIEW EXPLODE(p.productcoloroptions) colors as colorselection;
+1 Watches Red
+1 Watches Green
+2 Clothes Blue
+2 Clothes Green
+3 Books Blue
+3 Books Green
+3 Books Red
+```  
+#### Lateral View using POSExplode
+posexplode means positional_explode. posexplode gives you an index along with value when you expand any error, and then you can use this indexes to map values with each other as mentioned below.
+```sql
+>select * from test_laterla_view_posexplode;
+name	phone_numbers	cities
+AAA	[“365-889-1234”, “365-887-2232”]	[“Hamilton”][“Burlington”]
+BBB	[“232-998-3232”, “878-998-2232”]	[“Toronto”, “Stoney Creek”]
+>select name, phone_number, city 
+>from temp.test_laterla_view_posexplode
+>lateral view posexplode(phone_numbers) pn as pos_phone, phone_number
+>lateral view posexplode(cities) pn as pos_city, city 
+>where pos_phone == pos_city;
+name	phone_number	city
+AAA	365-889-1234	Hamilton
+AAA	365-887-2232	Burlington
+BBB	232-998-3232	Toronto
+BBB	878-998-2232	Stoney Creek
+```
