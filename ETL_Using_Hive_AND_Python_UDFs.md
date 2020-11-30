@@ -1,4 +1,10 @@
 # Prmary Table creation:  
+## Important Hive NoteMarks  
+```sql
+comments: using --
+Parameter tuning: using SET
+handeling special charecters in Coloumn_name: using `` like `Col$1/_2`
+```  
 ## Creation of a Table in Hive:  
 ```SQL
 CREATE TABLE pageviews (userid STRING COMMENT 'A sample comment on a column', 
@@ -537,3 +543,16 @@ INSERT OVERWRITE TABLE main_table select * from main_table_temp;
 --Delete the temp table
 Drop table main_table_temp;
 ```  
+  
+# Handeling Unstructured Data JSON or XML  
+## XML  
+XML raw data with tags can be parsed using xpath. Like xpath(main_column_name, 'tag1/tag1.2../dataType()').  
+```sql
+create table xmlsample(str string); --table creation with all the line as Single String
+load data local inpath '/path/to/xmlFile.xml' into xmlsample; --loading data into the table
+select xpath(str, '/tag1/tag1.1/text()'), xpath(str, '/tag1/tag1.2/text()') from xmlsample;
+```  
+## JSON  
+ETL on JSON can be done using 2 methods.
+loading entrie JSON as String and parsing JSON using 
+###
