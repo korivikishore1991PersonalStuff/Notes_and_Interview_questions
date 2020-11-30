@@ -554,11 +554,24 @@ load data local inpath '/path/to/xmlFile.xml' into xmlsample; --loading data int
 select xpath(str, '/tag1/tag1.1/text()'), xpath(str, '/tag1/tag1.2/text()') from xmlsample;
 ```  
 ## JSON  
-ETL on JSON can be done using 2 methods.
-1) loading entrie JSON as String and parsing the string JSON using get_json_object() --For COmplicated JSON's
-2) Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY --For Structured and Semi StructuredJSON's
-3) flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW. --For Analysis
-### Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY  
+ETL on JSON can be done using 2 methods.  
+1) loading entrie JSON as String and parsing the string JSON using get_json_object() --For COmplicated JSON's  
+2) Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY --For Structured and Semi StructuredJSON's  
+3) flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW. --For Analysis  
+### 1)loading entrie JSON as String and parsing the string JSON using get_json_object()  
+Usage is get_json_object(jsonString, '$.key') --Where, jsonString is a valid json string. $.key is a key of a value that you are trying to extract.  
+```sql
+>select get_json_object(jvalue, '$.name.pin\[1]') 
+>from  (select '{"name":{"pin":["123456","654321"]}}' as jvalue) as q;
+OK
++---------+--+
+|   _c0   |
++---------+--+
+| 654321  |
++---------+--+
+1 row selected (0.087 seconds)
+```  
+### 2)Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY  
 JsonSerDe is based on the text SerDe and each newline is considered as a new record. Only Valid JSON formats will be parsed.  
 #### Flat JSON((Key: value) 
 ```sql
@@ -606,7 +619,7 @@ mongoTestDCT.country mongoTestDCT.category mongoTestDCT.groups                  
 Albany               Animal                {"taxonomic_group":"Amphibians","taxonomic_subgroup":"Salamanders"} {"xaxis": 256, "yaxis": 266, "labels": ["p1", "p2", "p3"]}}
 ```  
 Reference: http://forkedblog.com/load-json-data-to-hive-database-from-file/  
-### flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW.  
+### 3) flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW.  
 #### Lateral view using Explode  
 ```sql
 >CREATE TABLE Products
