@@ -555,9 +555,57 @@ select xpath(str, '/tag1/tag1.1/text()'), xpath(str, '/tag1/tag1.2/text()') from
 ```  
 ## JSON  
 ETL on JSON can be done using 2 methods.
-1) loading entrie JSON as String and parsing the string JSON using get_json_object()  
-2) Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY
-3) flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW.
+1) loading entrie JSON as String and parsing the string JSON using get_json_object() --For COmplicated JSON's
+2) Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY --For Structured and Semi StructuredJSON's
+3) flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW. --For Analysis
+### Using Serdes @ org.apache.hive.hcatalog.data.JsonSerDe or org.apache.hive.serde2.JsonSerDe by creating tables Using STRUCT and ARRAY  
+JsonSerDe is based on the text SerDe and each newline is considered as a new record. Only Valid JSON formats will be parsed.  
+#### Flat JSON((Key: value) 
+```sql
+>cat Data.json
+{"world_rank": 1,"country": "China","population": 1388232694,"World": 0.185},
+{"world_rank": 2,"country": "India","population": 1342512706,"World": 0.179},
+>CREATE external TABLE if not exists world_population (
+>  world_rank INT,
+>  country STRING,
+>  population BIGINT,
+>  world DOUBLE
+> )
+>ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+>Location `/tmp/Data.json`;
+```  
+#### JSON with Special Charecters in Keys(Key: value and struct)  
+```sql
+>hadoop fs -cat /tmp/record/*
+{"Organisation": "Wells Fargo","_id":{"$oid":"5f82f"},"age":{"$numberLong":"35"}}  
+>create external table if not exists mongoTestDCT(Organisation STRING,
+>`_id` struct<`$oid`: string>,
+>age struct<`$numberLong`: string>)
+>ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+>LOCATION '/tmp/record';
+>select * from mongoTestDCT;
+mongoTestDCT.Organisation mongoTestDCT._id mongoTestDCT.age
+Wells Fargo               {"$oid":"5f82f"}  {"$numberLong":"35"}
+>select `_id`.`$oid` from mongoTestDCT
+$oid
+5f82f
+```  
+#### SemiStructured JSON(Key: value, struct and Array)
+```sql
+>hadoop fs -cat /tmp/record/*
+{"county":"Albany","category":"Animal","groups":{"taxonomic_group":"Amphibians","taxonomic_subgroup":"Salamanders"},"position":{"xaxis": 256, "yaxis": 266, "labels": ["p1", "p2", "p3"]}}
+>create external table if not exists mongoTestDCT(
+>country string,
+>category string,
+>groups struct<taxonomic_group: string,taxonomic_subgroup: string>,
+>position struct<xaxis: INT, yaxis: INT, labels: ARRAY<string>>)
+>ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+>LOCATION '/tmp/record';
+>select * from mongoTestDCT;
+mongoTestDCT.country mongoTestDCT.category mongoTestDCT.groups                                                 mongoTestDCT.position
+Albany               Animal                {"taxonomic_group":"Amphibians","taxonomic_subgroup":"Salamanders"} {"xaxis": 256, "yaxis": 266, "labels": ["p1", "p2", "p3"]}}
+```  
+Reference: http://forkedblog.com/load-json-data-to-hive-database-from-file/  
 ### flattening Complex Dataobjects using a combiation of explode or Posexpolde with LATERAL VIEW.  
 #### Lateral view using Explode  
 ```sql
@@ -598,3 +646,4 @@ AAA	365-887-2232	Burlington
 BBB	232-998-3232	Toronto
 BBB	878-998-2232	Stoney Creek
 ```
+Reference: http://allabouthadoop.net/hive-lateral-view-explode-vs-posexplode/  
