@@ -460,6 +460,7 @@ insert into table orders partition(order_date)
 select `(order_date)?+.+`, input__file__name, current_timestamp as ingestion_ts, cast(order_date as date) as part from new_data 
 ```  
 ## Insert or Update Ingestion: 
+### Using Over(), rank_no and row_number() OR Using inner_join and union
 In this method, data with new key is inserted to the table, whereas if the relevant key already exists in partition/table then record is updated with latest info.  
 New data is added or updated to the existing partition/table based on a row key. Data is appended to the table if the record contains new “key” otherwise existing record is updated with latest information. A row level timestamp is must for both current increamental data and full table data for this traditional solution to work.     
 This option is only possible when a row in the table can be identified uniquely using one or more columns. In orders table, “ID” field is row key. src_update_ts field indicates record time stamp.  
