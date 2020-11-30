@@ -502,7 +502,7 @@ Refer to https://medium.com/datakaresolutions/hive-design-patterns-783d6104d852 
   
 ### Update Hive Partition   
 ```sql
-ALTER TABLE <db_name>.<table_name> PARTITION(year = 2012) 
+ALTER TABLE <db_name>.<table_name> PARTITION(year = 2012) --table name can also be altered using ALTER TABLE recon_orders RENAME TO orders;
 SET LOCATION 'hdfs://user/user1/some_table/2012';
 --Update MetaStore
 Msck repair table <db_name>.<table_name>
