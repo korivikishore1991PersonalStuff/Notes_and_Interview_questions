@@ -396,6 +396,26 @@ TextFile: STORED AS TEXTFILE;
 Parquet: ROW FORMAT SERDE 'parquet.hive.serde.ParquetHiveSerDe'  STORED AS INPUTFORMAT 'parquet.hive.DeprecatedParquetInputFormat' OUTPUTFORMAT 'parquet.hive.DeprecatedParquetOutputFormat';  [OR] STORED AS PARQUET;  
 HBase: STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,details:carrier_desc") TBLPROPERTIES ("hbase.table.name" = "carriers")  
 Transactional Table: TBLPROPERTIES ("transactional"="true")  
+### Serdes Property modification  
+A CSV sample data processing  
+```sql
+CREATE EXTERNAL TABLE test_csv_opencsvserde (
+  id STRING,
+  name STRING,
+  location STRING,
+  create_date STRING,
+  create_timestamp STRING,
+  longitude STRING,
+  latitude STRING
+) 
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+with serdeproperties(
+"separatorChar"=",",
+"quoteChar"="\"",
+"escapeChar"="\\"
+)
+STORED AS TEXTFILE LOCATION 'oss://test-bucket-julian-1/test_csv_serde_1'
+```  
   
 # Data Ingestions   
 For all Data Ingestions a Temporary or staging tables(holds current data)[orders_stg] and Final tables(holds all data)[orders] is neccessary.  
@@ -658,5 +678,55 @@ AAA	365-889-1234	Hamilton
 AAA	365-887-2232	Burlington
 BBB	232-998-3232	Toronto
 BBB	878-998-2232	Stoney Creek
-```
+```  
+### 4) Processing MultiLine JSON  
+```sql
+>cat multiFile.json
+{
+    "DocId": "Alibaba", 
+    "User_1": {
+        "Id": 1234, 
+        "Username": "bob1234", 
+        "Name": "Bob", 
+        "ShippingAddress": {
+            "Address1": "969 Wenyi West St.", 
+            "Address2": null, 
+            "City": "Hangzhou", 
+            "Province": "Zhejiang"
+        }, 
+        "Orders": [
+            {
+                "ItemId": 6789, 
+                "OrderDate": "11/11/2017"
+            }, 
+            {
+                "ItemId": 4352, 
+                "OrderDate": "12/12/2017"
+            }
+        ]
+    }
+}
+>CREATE EXTERNAL TABLE json_table_1 (
+    docid string,
+    user_1 struct<
+            id:INT,
+            username:string,
+            name:string,
+            shippingaddress:struct<
+                            address1:string,
+                            address2:string,
+                            city:string,
+                            province:string
+                            >,
+            orders:array<
+                    struct<
+                        itemid:INT,
+                        orderdate:string
+                    >
+            >
+    >
+)
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
+LOCATION 'oss://xxx/test/json/hcatalog_serde/table_1/';
+```  
 Reference: http://allabouthadoop.net/hive-lateral-view-explode-vs-posexplode/  
