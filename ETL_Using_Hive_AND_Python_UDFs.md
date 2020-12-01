@@ -729,4 +729,5 @@ BBB	878-998-2232	Stoney Creek
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 LOCATION 'oss://xxx/test/json/hcatalog_serde/table_1/';
 ```  
-Reference: http://allabouthadoop.net/hive-lateral-view-explode-vs-posexplode/  
+Reference: http://allabouthadoop.net/hive-lateral-view-explode-vs-posexplode/ and https://alibaba-cloud.medium.com/processing-oss-data-files-in-different-formats-using-data-lake-analytics-476d1c49c541  
+
