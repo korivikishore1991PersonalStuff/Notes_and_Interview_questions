@@ -731,5 +731,13 @@ BBB	878-998-2232	Stoney Creek
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'
 LOCATION 'oss://xxx/test/json/hcatalog_serde/table_1/';
 ```  
+### Other modification
+```sql
+CREATE TABLE mytable (
+    my_field string,
+    other struct<with_dots:string> )
+    ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
+WITH SERDEPROPERTIES ("dots.in.keys" = "true", 'case.insensitive'='false', 'ignore.malformed.json' = 'true' )
+```  
 Reference: http://allabouthadoop.net/hive-lateral-view-explode-vs-posexplode/ and https://alibaba-cloud.medium.com/processing-oss-data-files-in-different-formats-using-data-lake-analytics-476d1c49c541  
 
