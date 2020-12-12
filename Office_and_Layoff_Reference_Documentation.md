@@ -4,6 +4,9 @@ Its not my probleam if anyone feel threatened or if you feel jeouls of me being 
 I believe in response with humor and kindness, but if you are still trying to continue these sort of bullying, expoliatation, abuse and teo stepping tactics, its better you minimize the interactions.  
 There is fine line between homor, sarcatism, disrespect and abuse. When you cross the line between sarcatism and disrespect, we will start to hurtfull to other people. True bravery is being kind.  
   
+# Dealing with Deception  
+Here is the thing, I don't buge/buy it. I think you'r trying to play me. This is risky/redendant and bullshit way to deal with this. I know what people like you think of people who U don't like. I have been made fun of my whole life dude, I know what it feels like to superior in some aspect to other and they know it, so they find ways to cut you down.  
+  
 # Layoff refernce      
 Remember to Document every thing, do a KT with a plan and get the KT plan approved by the manager first.  Mail the summary of every KT session for each and every session. Make sure about the issue that cann't be tutored and communicate basic iteams are there cross to bear.  
 ## What are U doing  
