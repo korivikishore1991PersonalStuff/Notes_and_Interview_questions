@@ -249,7 +249,7 @@ df.repartition(numOfPartitions)
 ## Map-side joins  
 Map-side joins can be tricky to configure and use properly. Here are a few pointers.  
 ### Auto-convert to map-side join whenever possible  
-Set the property hive.auto.convert.join to true in your Hive config and Hive will automatically try to convert the join to a map-side join, as long as the table fits below a certain size threshold. You can configure the maximum size with the property hive.smalltable.filesize. This will tell Hive what file size (or below) constitutes a small table. It's written in bytes expressed as a long (for example, 25000000L = 25M).  
+Set the property hive.auto.convert.join to true in your Hive config and Hive will automatically try to convert the join to a map-side join, as long as the table fits below a certain size threshold. You can configure the maximum size with the property hive.smalltable.filesize. This will tell Hive what file size (or below) constitutes a small table. It's written in bytes expressed as a long (for example, 25000000L = 25M). This size is controlled by hive.mapjoin.smalltable.filesize    
 ```SQL
 hive> set hive.auto.convert.join=true;
 hive> set hive.auto.convert.join.noconditionaltask=true;
