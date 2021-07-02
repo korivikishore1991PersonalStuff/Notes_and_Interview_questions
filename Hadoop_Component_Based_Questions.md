@@ -335,6 +335,8 @@ real Outputs:
 --num-executors = ({(84/6)-1}/3)*6 = 24  
 --executor-memory = {(336*3)/(6*((84/6)-1))}*0.9 = 12 GB  
 ```  
+Reference: https://www.youtube.com/watch?v=V4vyRx9efEQ&t=476s&ab_channel=Qubole  
+  
 ### How to tune default partitions and parallelism in Spark?  
 Via CMD  
 ```
